@@ -86,7 +86,8 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-fl_buscarRuta.showOpenDialog(this);
+        
+        fl_buscarRuta.showOpenDialog(this);
         
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
