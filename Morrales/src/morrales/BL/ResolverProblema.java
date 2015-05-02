@@ -20,9 +20,9 @@ public class ResolverProblema {
     ArrayList<Double> propiedades;
     int cantidadVariables, cantidadCajas;
 
-    public ResolverProblema() {
-         
-        this.propiedades = propiedades;
+    public ResolverProblema(String rutaProblema) {         
+        DAL dal = new DAL();
+        this.propiedades = dal.leerTextoArchivo(rutaProblema);
         this.cantidadCajas = propiedades.get(0).intValue();
         this.cantidadVariables = cantidadCajas + cantidadCajas * cantidadCajas;
     }
