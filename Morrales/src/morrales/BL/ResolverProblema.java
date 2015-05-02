@@ -55,7 +55,8 @@ public class ResolverProblema {
 
             for (int i = 1; i <= cantidadCajas; i++) {
                 int salto = i * cantidadCajas + 1;
-                for (int j = salto; j <= salto + 1; j++) {
+                int cotaSuperior = cantidadCajas + salto - 1;
+                for (int j = salto; j <= cotaSuperior; j++) {
                     restriccion[j] = 1;
                 }
                 solver.addConstraint(restriccion, LpSolve.EQ, 1);
@@ -107,15 +108,17 @@ public class ResolverProblema {
             agregarFuncionObjetivo();
             agregarRestricciones();
             setVariablesBinarias();
+            solver.writeLp("src/lp.lp");
             solver.solve();
+            solver.printLp();
             solver.printSolution(1);
             solver.printObjective();
             
-            //solver.writeLp("src/lp.lp");
+            
         } catch (LpSolveException e) {
             e.printStackTrace();
         }
-        return "Mira la solución en Consola"; 
+        return "Mira la soluciÃ³n en Consola"; 
     }
 
     public void setVariablesBinarias() {
