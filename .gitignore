@@ -53,5 +53,10 @@ nbactions.xml
 nb-configuration.xml
 *.properties
 
+
 #java specific
 *.class
+Morrales/manifest.mf
+Morrales/nbproject/project.xml
+Morrales/nbproject/build-impl.xml
+Morrales/build.xml
