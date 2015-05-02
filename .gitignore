@@ -44,11 +44,11 @@ Temporary Items
 
 
 # netbeans
-/Morrales/nbproject/private/
-/Morrales/build/
-/Morrales/nbbuild/
-/Morrales/dist/
-/Morrales/nbdist/
+Morrales/nbproject/private/
+Morrales/build/
+Morrales/nbbuild/
+Morrales/dist/
+Morrales/nbdist/
 nbactions.xml
 nb-configuration.xml
 *.properties
