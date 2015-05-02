@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAL;
+package morrales.DAL;
+
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -22,25 +21,40 @@ import javax.swing.JOptionPane;
 public class DAL {
 
     
-    public ArrayList<String> leerTextoArchivo(String rutaArchivo) {
+    public ArrayList<Double> leerTextoArchivo(String rutaArchivo) {
 
 
 
         FileReader archivo = null;
         String linea = "";
+       
 
-        ArrayList<String> datos = new ArrayList<String>();
+        ArrayList<Double> datos = new ArrayList<Double>();
 
         try {
 
             archivo = new FileReader(rutaArchivo); //lee el archivo
             BufferedReader lector = new BufferedReader(archivo);
+            
+            linea = lector.readLine();
+            datos.add(Double.parseDouble(linea)); 
+            
+             linea = lector.readLine();
+            datos.add(Double.parseDouble(linea)); 
+            
+             linea = lector.readLine();
+            datos.add(Double.parseDouble(linea)); 
+            
+            
+           while ((linea = lector.readLine()) != null) {
+               
+                  
+                   
+                    datos.add(Double.parseDouble(linea.split(" ")[0]));
+                    datos.add(Double.parseDouble(linea.split(" ")[1]));
+               
 
-
-
-            while ((linea = lector.readLine()) != null) {
-
-                datos.add(linea);
+               
             }
         } catch (FileNotFoundException e) {
 

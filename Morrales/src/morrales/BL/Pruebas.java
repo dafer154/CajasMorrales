@@ -23,7 +23,7 @@ public class Pruebas {
         propiedades.add(2.0);
         propiedades.add(5.0);
         
-        ResolverProblema solver = new ResolverProblema(propiedades);
+        /*ResolverProblema solver = new ResolverProblema(propiedades);
         solver.crearSolver();
         solver.agregarFuncionObjetivo();
         solver.agregarRestricciones();
@@ -31,7 +31,7 @@ public class Pruebas {
         solver.resolver();
         solver.solver.printLp();
         solver.solver.printObjective();
-        solver.solver.printSolution(1);
+        solver.solver.printSolution(1);*/
     }
     
 }

@@ -5,6 +5,7 @@
  */
 package morrales.BL;
 
+import morrales.DAL.DAL;
 import java.util.ArrayList;
 import lpsolve.LpSolve;
 import lpsolve.LpSolveException;
@@ -19,7 +20,8 @@ public class ResolverProblema {
     ArrayList<Double> propiedades;
     int cantidadVariables, cantidadCajas;
 
-    public ResolverProblema(ArrayList<Double> propiedades) {
+    public ResolverProblema() {
+         
         this.propiedades = propiedades;
         this.cantidadCajas = propiedades.get(0).intValue();
         this.cantidadVariables = cantidadCajas + cantidadCajas * cantidadCajas;
