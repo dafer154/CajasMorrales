@@ -51,7 +51,7 @@ Morrales/dist/
 Morrales/nbdist/
 nbactions.xml
 nb-configuration.xml
-*.properties
+
 
 
 #java specific
