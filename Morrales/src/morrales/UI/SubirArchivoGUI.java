@@ -5,6 +5,8 @@
  */
 package morrales.UI;
 
+import morrales.BL.ResolverProblema;
+
 /**
  *
  * @author roand_000
@@ -86,8 +88,9 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        ResolverProblema resolver;
         fl_buscarRuta.showOpenDialog(this);
+        resolver= new ResolverProblema();
         
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
