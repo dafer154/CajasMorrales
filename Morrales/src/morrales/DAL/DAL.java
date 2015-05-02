@@ -50,8 +50,8 @@ public class DAL {
                
                   
                    
-                    datos.add(Double.parseDouble(linea.split(" ")[0]));
                     datos.add(Double.parseDouble(linea.split(" ")[1]));
+                    datos.add(Double.parseDouble(linea.split(" ")[2]));
                
 
                

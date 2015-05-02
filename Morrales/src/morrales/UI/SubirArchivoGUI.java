@@ -44,6 +44,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
             }
         });
 
+        ta_resultado.setEditable(false);
         ta_resultado.setColumns(20);
         ta_resultado.setRows(5);
         sp_areaDeResultado.setViewportView(ta_resultado);
@@ -90,7 +91,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ResolverProblema resolver;
         fl_buscarRuta.showOpenDialog(this);
-        resolver= new ResolverProblema();
+        resolver= new ResolverProblema(fl_buscarRuta.getSelectedFile().getPath());
         
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
