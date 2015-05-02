@@ -101,13 +101,21 @@ public class ResolverProblema {
         //addConstraint(double[] row, int constrType, double rh) 
     }
 
-    public void resolver() {
+    public String resolver() {
         try {
+            crearSolver();
+            agregarFuncionObjetivo();
+            agregarRestricciones();
+            setVariablesBinarias();
             solver.solve();
-            solver.writeLp("src/lp.lp");
+            solver.printSolution(1);
+            solver.printObjective();
+            
+            //solver.writeLp("src/lp.lp");
         } catch (LpSolveException e) {
             e.printStackTrace();
         }
+        return "Mira la solución en Consola"; 
     }
 
     public void setVariablesBinarias() {
