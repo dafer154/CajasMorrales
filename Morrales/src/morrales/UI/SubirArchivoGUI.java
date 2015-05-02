@@ -87,9 +87,9 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ResolverProblema resolver;
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         fl_buscarRuta.showOpenDialog(this);
         resolver= new ResolverProblema(fl_buscarRuta.getSelectedFile().getPath());
         
@@ -98,7 +98,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
 
     private void bt_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_calcularActionPerformed
 
-
+        ta_resultado.setText( resolver.resolver());
 
 // TODO add your handling code here:
     }//GEN-LAST:event_bt_calcularActionPerformed
