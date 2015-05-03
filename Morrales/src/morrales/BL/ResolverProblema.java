@@ -20,7 +20,7 @@ public class ResolverProblema {
     LpSolve solver;
     ArrayList<Double> propiedades, distribucion;
     int cantidadVariables, cantidadCajas;
-    double MGrande = 10000000;
+    double MGrande = 1000000;
     String mensajeResultado = "Por definir, pero ya todo funciona";
     double cantOptimaMorrales;
 
