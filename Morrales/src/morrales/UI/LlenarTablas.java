@@ -8,6 +8,7 @@ package morrales.UI;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.text.DecimalFormat;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -21,13 +22,13 @@ import morrales.BL.ResolverProblema;
  */
 public class LlenarTablas {
     
-
-    public void llenarTabla1(JTable tabla, String ruta)
+    public LlenarTablas(String ruta){
+    resolver= new ResolverProblema(ruta);
+    }
+    
+ResolverProblema resolver;
+    public void llenarTabla1(JTable tabla)
     {
-        
-        
-        ResolverProblema resolver= new ResolverProblema(ruta);
-        
         double cantidadCajas=resolver.getCantidadCajas();
         
         TableCellRenderer render = new TableCellRenderer() {
@@ -71,10 +72,11 @@ public class LlenarTablas {
     
     
     
-    public void llenarTabla2(JTable tabla, String ruta)
+    public void llenarTabla2(JTable tabla)
     {
+        String pattern = "###.###";
+        DecimalFormat decimalFormat = new DecimalFormat(pattern);
         
-        ResolverProblema resolver= new ResolverProblema(ruta);
         resolver.resolver();
         double cantidadMorrales=Math.round(resolver.getCantOptimaMorrales());
         
@@ -103,8 +105,8 @@ public class LlenarTablas {
                 String [] filas = {
                     ""+(i+1),
                     ""+Math.round(resolver.getDistribucion().get(contador)),
-                    ""+resolver.getDistribucion().get(contador+1),
-                    ""+resolver.getDistribucion().get(contador+2)
+                    decimalFormat.format(resolver.getDistribucion().get(contador+1)),
+                    decimalFormat.format(resolver.getDistribucion().get(contador+2))
                 };
                 totalCantidadCajas+=resolver.getDistribucion().get(contador);
                 totalVolumenOc+=resolver.getDistribucion().get(contador+1);
@@ -112,7 +114,7 @@ public class LlenarTablas {
                 modeloTabla.addRow(filas);
                 contador+=3;
             }
-            String [] filas = {"Total",""+Math.round(totalCantidadCajas),""+totalVolumenOc,""+totalPesoOc};
+            String [] filas = {"Total",""+Math.round(totalCantidadCajas),decimalFormat.format(totalVolumenOc),decimalFormat.format(totalPesoOc)};
             modeloTabla.addRow(filas);
             tabla.setModel(modeloTabla);
             tabla.getColumnModel().getColumn(0).setCellRenderer(render);
@@ -122,6 +124,11 @@ public class LlenarTablas {
            
     }
     
+    public double getNumeroOptimoMorrales(){
+    
+       return resolver.getCantOptimaMorrales();
+    
+    }
     
     
     

@@ -5,6 +5,7 @@
  */
 package morrales.UI;
 
+import java.text.DecimalFormat;
 import javax.swing.table.DefaultTableModel;
 import morrales.BL.ResolverProblema;
 
@@ -75,7 +76,6 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
 
         lb_subirArchivo.setText("Subir Archivo");
 
-        sp_areaDeRespuesta.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         sp_areaDeRespuesta.setResizeWeight(0.5);
         sp_areaDeRespuesta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         sp_areaDeRespuesta.setOneTouchExpandable(true);
@@ -176,7 +176,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sc_requerimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+                    .addComponent(sc_requerimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -188,7 +188,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sc_requerimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                .addComponent(sc_requerimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -236,7 +236,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
             .addGroup(panel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sc_solucion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+                    .addComponent(sc_solucion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
                     .addGroup(panel2Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -253,7 +253,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sc_solucion, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                .addComponent(sc_solucion, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_numDeMorrales)
@@ -291,39 +291,41 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tb_ruta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lb_subirArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tb_ruta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lb_subirArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(bt_calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sp_areaDeRespuesta))
         );
     }// </editor-fold>//GEN-END:initComponents
         ResolverProblema resolver;
+        LlenarTablas llenarTab;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        fl_buscarRuta.showOpenDialog(this);
+         
+         fl_buscarRuta.showOpenDialog(this);
+         llenarTab=new LlenarTablas(fl_buscarRuta.getSelectedFile().getPath());
+         resolver=new ResolverProblema(fl_buscarRuta.getSelectedFile().getPath());
         tb_ruta.setText(fl_buscarRuta.getSelectedFile().getPath());
+        String pattern = "###.###";
+        DecimalFormat decimalFormat = new DecimalFormat(pattern);
+        tb_cantDeCajas.setText(""+Math.round(resolver.getPropiedades().get(0)));
+        tb_volMorrales.setText(decimalFormat.format(resolver.getPropiedades().get(1)));
+        tb_pesoDeMorrales.setText(decimalFormat.format(resolver.getPropiedades().get(2)));
+        llenarTab.llenarTabla1(ta_requerimiento);
+  
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void bt_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_calcularActionPerformed
         
-        LlenarTablas llenarTab=new LlenarTablas();
+        llenarTab=new LlenarTablas(fl_buscarRuta.getSelectedFile().getPath());
         if (fl_buscarRuta.getSelectedFile()!=null)
         {
-            resolver= new ResolverProblema(tb_ruta.getText());
-            resolver.resolver();
-            tb_cantDeCajas.setText(""+Math.round(resolver.getPropiedades().get(0)));
-            tb_volMorrales.setText(""+resolver.getPropiedades().get(1));
-            tb_pesoDeMorrales.setText(""+resolver.getPropiedades().get(2));
-            llenarTab.llenarTabla1(ta_requerimiento,tb_ruta.getText());
-            llenarTab.llenarTabla2(ta_solucion,tb_ruta.getText());
-            tb_numDeMorrales.setText(""+Math.round(resolver.getCantOptimaMorrales()));
-            
-            
-            
-        
+            llenarTab.llenarTabla2(ta_solucion);
+            tb_numDeMorrales.setText(""+Math.round(llenarTab.getNumeroOptimoMorrales()));
         }
     }//GEN-LAST:event_bt_calcularActionPerformed
 
