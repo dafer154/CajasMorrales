@@ -207,24 +207,9 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Morral", "Cantidad de cajas", "Volumen ocupado", "Peso ocupado"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         ta_solucion.setToolTipText("");
         ta_solucion.setEnabled(false);
         sc_solucion.setViewportView(ta_solucion);
@@ -315,8 +300,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
         tb_volMorrales.setText(decimalFormat.format(resolver.getPropiedades().get(1)));
         tb_pesoDeMorrales.setText(decimalFormat.format(resolver.getPropiedades().get(2)));
         llenarTab.llenarTabla1(ta_requerimiento);
-  
-// TODO add your handling code here:
+        ta_solucion.setModel(new DefaultTableModel());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void bt_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_calcularActionPerformed
