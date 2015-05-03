@@ -63,6 +63,7 @@ public class ResolverProblema {
         this.cantidadCajas = propiedades.get(0).intValue();
         this.cantidadVariables = cantidadCajas + cantidadCajas * cantidadCajas;
         distribucion = new ArrayList<Double>();
+
     }
 
     public void crearSolver() {
