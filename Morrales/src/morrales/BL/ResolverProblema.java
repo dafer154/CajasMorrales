@@ -154,25 +154,35 @@ public class ResolverProblema {
             solver.printConstraints(1);
             cantOptimaMorrales = solver.getObjective();
 
-            int cont=1, indicePrimerMorral = 0;
-            double volTemp, pesoTemp, cajasLlevadasTemp;
+            int cont=0, indicePrimerMorral = 0, indiceVol;
+            double cajasLlevadasTemp;
             double[] row = new double[4 * cantidadCajas + 1];
             solver.getConstraints(row);
+            
+            indicePrimerMorral = 3 * cantidadCajas;
+            
+            for (int i = indicePrimerMorral; i <= 4 * cantidadCajas; i++) {
+                cajasLlevadasTemp = row[i];
+                if (cajasLlevadasTemp < 0) {
+                    indiceVol = indicePrimerMorral - 2*cantidadCajas + 2*cont;
+                    distribucion.add(cajasLlevadasTemp + MGrande);
+                    distribucion.add(row[indiceVol]);
+                    distribucion.add(row[indiceVol + 1]);                    
+                }
+                cont++;
+            }
 
-            for (int i = cantidadCajas; i <= 2 * cantidadCajas; i += 2) {
+            /*for (int i = cantidadCajas; i <= 2 * cantidadCajas; i += 2) {
                 volTemp = row[i];
                 if (volTemp > 0) {
                     pesoTemp = row[i + 1];
-                    if (cont == 1) {
-                        indicePrimerMorral = i + 2 * cantidadCajas -1;
-                    }
                     cajasLlevadasTemp = row[indicePrimerMorral+cont] + MGrande;
                     distribucion.add(cajasLlevadasTemp);
                     distribucion.add(volTemp);
-                    distribucion.add(pesoTemp);
-                    cont++;
+                    distribucion.add(pesoTemp);                    
                 }
-            }
+                cont++;
+            }*/
         } catch (LpSolveException e) {
             e.printStackTrace();
         }
