@@ -5,7 +5,6 @@
  */
 package morrales.BL;
 
-import java.text.DecimalFormat;
 import morrales.DAL.DAL;
 import java.util.ArrayList;
 import lpsolve.LpSolve;
@@ -18,8 +17,9 @@ import lpsolve.LpSolveException;
 public class ResolverProblema {
 
     LpSolve solver;
-    ArrayList<Double> propiedades, distribucion, cantIteraciones, cantNodos;
+    ArrayList<Double> propiedades, distribucion;
     int cantidadVariables, cantidadCajas;
+    long cantIteraciones, cantNodos;
     double MGrande = 1000000;
     String mensajeResultado = "Por definir, pero ya todo funciona";
     double cantOptimaMorrales;
@@ -56,11 +56,11 @@ public class ResolverProblema {
         this.cantOptimaMorrales = cantOptimaMorrales;
     }
 
-    public ArrayList<Double> getCantIteraciones() {
+    public long getCantIteraciones() {
         return cantIteraciones;
     }
 
-    public ArrayList<Double> getCantNodos() {
+    public long getCantNodos() {
         return cantNodos;
     }
 
