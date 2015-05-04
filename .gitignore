@@ -56,4 +56,4 @@ nb-configuration.xml
 
 #java specific
 *.class
-*.lp
+Morrales/src/lp.lp
