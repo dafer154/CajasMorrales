@@ -50,8 +50,15 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
         ta_requerimiento = new javax.swing.JTable();
         panel2 = new javax.swing.JPanel();
         lb_numDeMorrales = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         tb_numDeMorrales = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        tb_numeroNodos = new javax.swing.JTextField();
+        tb_cantidadIteraciones = new javax.swing.JTextField();
+        tb_cantidadVariables = new javax.swing.JTextField();
         sc_solucion = new javax.swing.JScrollPane();
         ta_solucion = new javax.swing.JTable();
         tb_ruta = new javax.swing.JTextField();
@@ -188,7 +195,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sc_requerimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addComponent(sc_requerimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -196,11 +203,70 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
 
         lb_numDeMorrales.setText("El número óptimo de morrales es:");
 
+        tb_numDeMorrales.setEditable(false);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Solucion");
-        jLabel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        tb_numDeMorrales.setEditable(false);
+        jLabel1.setText("Numero de nodos");
+
+        jLabel4.setText("Cantidad de iteraciones");
+
+        jLabel5.setText("Cantidad de variables generadas");
+
+        tb_numeroNodos.setEditable(false);
+
+        tb_cantidadIteraciones.setEditable(false);
+        tb_cantidadIteraciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tb_cantidadIteracionesActionPerformed(evt);
+            }
+        });
+
+        tb_cantidadVariables.setEditable(false);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tb_numeroNodos, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                            .addComponent(tb_cantidadIteraciones)
+                            .addComponent(tb_cantidadVariables))))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
+                .addGap(7, 7, 7)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tb_numeroNodos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(tb_cantidadIteraciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(tb_cantidadVariables, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         ta_solucion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -221,28 +287,28 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
             .addGroup(panel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sc_solucion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
-                    .addGroup(panel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(sc_solucion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lb_numDeMorrales)
-                        .addGap(12, 12, 12)
-                        .addComponent(tb_numDeMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tb_numDeMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel2Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panel2Layout.setVerticalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sc_solucion, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(sc_solucion, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_numDeMorrales)
-                    .addComponent(tb_numDeMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tb_numDeMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lb_numDeMorrales))
                 .addContainerGap())
         );
 
@@ -269,7 +335,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bt_calcular)
                 .addContainerGap())
-            .addComponent(sp_areaDeRespuesta)
+            .addComponent(sp_areaDeRespuesta, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,7 +355,11 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
         ResolverProblema resolver;
         LlenarTablas llenarTab;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         
+
+        tb_cantidadIteraciones.setText("");
+            tb_cantidadVariables.setText("");
+            tb_numeroNodos.setText("");
+            tb_numDeMorrales.setText("");
          fl_buscarRuta.showOpenDialog(this);
          llenarTab=new LlenarTablas(fl_buscarRuta.getSelectedFile().getPath());
          resolver=new ResolverProblema(fl_buscarRuta.getSelectedFile().getPath());
@@ -308,7 +378,11 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
         llenarTab=new LlenarTablas(fl_buscarRuta.getSelectedFile().getPath());
         if (fl_buscarRuta.getSelectedFile()!=null)
         {
+            
             llenarTab.llenarTabla2(ta_solucion);
+            tb_cantidadIteraciones.setText(String.valueOf(llenarTab.getCantidadIteraciones()));
+            tb_cantidadVariables.setText(""+llenarTab.getCantidadVariables());
+            tb_numeroNodos.setText(String.valueOf(llenarTab.getCantidadNodos()));
             tb_numDeMorrales.setText(""+Math.round(llenarTab.getNumeroOptimoMorrales()));
         }
     }//GEN-LAST:event_bt_calcularActionPerformed
@@ -321,14 +395,22 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tb_rutaActionPerformed
 
+    private void tb_cantidadIteracionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_cantidadIteracionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tb_cantidadIteracionesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_calcular;
     private javax.swing.JFileChooser fl_buscarRuta;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lb_cantdecajas;
     private javax.swing.JLabel lb_numDeMorrales;
     private javax.swing.JLabel lb_pesoDeMorrales;
@@ -343,7 +425,10 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
     private javax.swing.JTable ta_requerimiento;
     private javax.swing.JTable ta_solucion;
     private javax.swing.JTextField tb_cantDeCajas;
+    private javax.swing.JTextField tb_cantidadIteraciones;
+    private javax.swing.JTextField tb_cantidadVariables;
     private javax.swing.JTextField tb_numDeMorrales;
+    private javax.swing.JTextField tb_numeroNodos;
     private javax.swing.JTextField tb_pesoDeMorrales;
     private javax.swing.JTextField tb_ruta;
     private javax.swing.JTextField tb_volMorrales;

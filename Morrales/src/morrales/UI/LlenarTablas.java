@@ -130,6 +130,15 @@ ResolverProblema resolver;
        return resolver.getCantOptimaMorrales();
     }
     
+    public long getCantidadNodos(){ 
+       return resolver.getCantNodos();
+    }
+    public long getCantidadIteraciones(){ 
+       return resolver.getCantIteraciones();
+    }
+    public double getCantidadVariables(){ 
+       return resolver.getCantidadVariables();
+    }
     
     
 }

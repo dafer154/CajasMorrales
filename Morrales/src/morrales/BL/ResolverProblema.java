@@ -5,7 +5,6 @@
  */
 package morrales.BL;
 
-import java.text.DecimalFormat;
 import morrales.DAL.DAL;
 import java.util.ArrayList;
 import lpsolve.LpSolve;
@@ -20,6 +19,7 @@ public class ResolverProblema {
     LpSolve solver;
     ArrayList<Double> propiedades, distribucion;
     int cantidadVariables, cantidadCajas;
+    long cantIteraciones, cantNodos;
     double MGrande = 1000000;
     String mensajeResultado = "Por definir, pero ya todo funciona";
     double cantOptimaMorrales;
@@ -55,7 +55,18 @@ public class ResolverProblema {
     public void setCantOptimaMorrales(double cantOptimaMorrales) {
         this.cantOptimaMorrales = cantOptimaMorrales;
     }
-    
+
+    public long getCantIteraciones() {
+        return cantIteraciones;
+    }
+
+    public long getCantNodos() {
+        return cantNodos;
+    }
+
+    public int getCantidadVariables() {
+        return cantidadVariables;
+    }
       
     public ResolverProblema(String rutaProblema) {
         DAL dal = new DAL();
@@ -148,11 +159,14 @@ public class ResolverProblema {
             agregarRestricciones();
             setVariablesBinarias();
             solver.writeLp("src/lp.lp");
-            solver.solve();
+            //solver.setBbRule(LpSolve.NODE_FIRSTSELECT);
+            solver.solve();            
             solver.printLp();
             solver.printSolution(1);
             solver.printObjective();
             solver.printConstraints(1);
+            cantIteraciones = solver.getTotalIter();
+            cantNodos = solver.getTotalNodes();
             cantOptimaMorrales = solver.getObjective();
 
             int cont=0, indicePrimerMorral = 0, indiceVol;
