@@ -355,7 +355,10 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
         ResolverProblema resolver;
         LlenarTablas llenarTab;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         
+
+        tb_cantidadIteraciones.setText("");
+            tb_cantidadVariables.setText("");
+            tb_numeroNodos.setText("");
          fl_buscarRuta.showOpenDialog(this);
          llenarTab=new LlenarTablas(fl_buscarRuta.getSelectedFile().getPath());
          resolver=new ResolverProblema(fl_buscarRuta.getSelectedFile().getPath());
@@ -374,9 +377,9 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
         llenarTab=new LlenarTablas(fl_buscarRuta.getSelectedFile().getPath());
         if (fl_buscarRuta.getSelectedFile()!=null)
         {
-            tb_cantidadIteraciones.setText(""+resolver.getCantIteraciones());
-            tb_cantidadVariables.setText(""+resolver.getCantidadVariables());
-            tb_numeroNodos.setText(""+resolver.getCantNodos());
+            tb_cantidadIteraciones.setText(String.valueOf(llenarTab.getCantidadIteraciones()));
+            tb_cantidadVariables.setText(""+llenarTab.getCantidadVariables());
+            tb_numeroNodos.setText(String.valueOf(llenarTab.getCantidadNodos()));
             llenarTab.llenarTabla2(ta_solucion);
             tb_numDeMorrales.setText(""+Math.round(llenarTab.getNumeroOptimoMorrales()));
         }
