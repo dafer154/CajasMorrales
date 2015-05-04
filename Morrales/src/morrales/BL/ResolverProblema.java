@@ -148,6 +148,7 @@ public class ResolverProblema {
             agregarRestricciones();
             setVariablesBinarias();
             solver.writeLp("src/lp.lp");
+            //solver.setBbRule(LpSolve.NODE_FIRSTSELECT);
             solver.solve();
             solver.printLp();
             solver.printSolution(1);
