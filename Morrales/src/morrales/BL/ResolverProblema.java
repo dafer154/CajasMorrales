@@ -18,7 +18,7 @@ import lpsolve.LpSolveException;
 public class ResolverProblema {
 
     LpSolve solver;
-    ArrayList<Double> propiedades, distribucion;
+    ArrayList<Double> propiedades, distribucion, cantIteraciones, cantNodos;
     int cantidadVariables, cantidadCajas;
     double MGrande = 1000000;
     String mensajeResultado = "Por definir, pero ya todo funciona";
@@ -55,7 +55,18 @@ public class ResolverProblema {
     public void setCantOptimaMorrales(double cantOptimaMorrales) {
         this.cantOptimaMorrales = cantOptimaMorrales;
     }
-    
+
+    public ArrayList<Double> getCantIteraciones() {
+        return cantIteraciones;
+    }
+
+    public ArrayList<Double> getCantNodos() {
+        return cantNodos;
+    }
+
+    public int getCantidadVariables() {
+        return cantidadVariables;
+    }
       
     public ResolverProblema(String rutaProblema) {
         DAL dal = new DAL();
@@ -149,11 +160,13 @@ public class ResolverProblema {
             setVariablesBinarias();
             solver.writeLp("src/lp.lp");
             //solver.setBbRule(LpSolve.NODE_FIRSTSELECT);
-            solver.solve();
+            solver.solve();            
             solver.printLp();
             solver.printSolution(1);
             solver.printObjective();
             solver.printConstraints(1);
+            cantIteraciones = solver.getTotalIter();
+            cantNodos = solver.getTotalNodes();
             cantOptimaMorrales = solver.getObjective();
 
             int cont=0, indicePrimerMorral = 0, indiceVol;
