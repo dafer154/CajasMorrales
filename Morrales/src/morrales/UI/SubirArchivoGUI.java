@@ -374,6 +374,9 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
         llenarTab=new LlenarTablas(fl_buscarRuta.getSelectedFile().getPath());
         if (fl_buscarRuta.getSelectedFile()!=null)
         {
+            tb_cantidadIteraciones.setText(""+resolver.getCantIteraciones());
+            tb_cantidadVariables.setText(""+resolver.getCantidadVariables());
+            tb_numeroNodos.setText(""+resolver.getCantNodos());
             llenarTab.llenarTabla2(ta_solucion);
             tb_numDeMorrales.setText(""+Math.round(llenarTab.getNumeroOptimoMorrales()));
         }
