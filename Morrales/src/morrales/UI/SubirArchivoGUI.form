@@ -421,7 +421,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel5">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Cantida de variables generadas"/>
+                    <Property name="text" type="java.lang.String" value="Cantidad de variables generadas"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tb_numeroNodos">
