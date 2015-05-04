@@ -29,6 +29,8 @@ public class LlenarTablas {
 ResolverProblema resolver;
     public void llenarTabla1(JTable tabla)
     {
+         String pattern = "###.###";
+        DecimalFormat decimalFormat = new DecimalFormat(pattern);
         double cantidadCajas=resolver.getCantidadCajas();
         
         TableCellRenderer render = new TableCellRenderer() {
@@ -54,15 +56,15 @@ ResolverProblema resolver;
             for (int i = 0; i < cantidadCajas; i++) {
                 String [] filas = {
                     ""+(i+1),
-                    ""+resolver.getPropiedades().get(contador),
-                    ""+resolver.getPropiedades().get(contador+1)            
+                    decimalFormat.format(resolver.getPropiedades().get(contador)),
+                    decimalFormat.format(resolver.getPropiedades().get(contador+1))          
                 };
                 totalVolumen+=resolver.getPropiedades().get(contador);
                 totalPeso+=resolver.getPropiedades().get(contador+1);
                 modeloTabla.addRow(filas);
                 contador+=2;
             }
-            String [] filas = {"Total",""+totalVolumen,""+totalPeso};
+            String [] filas = {"Total",decimalFormat.format(totalVolumen),decimalFormat.format(totalPeso)};
             modeloTabla.addRow(filas);
             tabla.setModel(modeloTabla);
             tabla.getColumnModel().getColumn(0).setCellRenderer(render);
@@ -124,10 +126,8 @@ ResolverProblema resolver;
            
     }
     
-    public double getNumeroOptimoMorrales(){
-    
+    public double getNumeroOptimoMorrales(){ 
        return resolver.getCantOptimaMorrales();
-    
     }
     
     
