@@ -214,7 +214,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
 
         jLabel4.setText("Cantidad de iteraciones");
 
-        jLabel5.setText("Cantida de variables generadas");
+        jLabel5.setText("Cantidad de variables generadas");
 
         tb_numeroNodos.setEditable(false);
 
@@ -359,6 +359,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
         tb_cantidadIteraciones.setText("");
             tb_cantidadVariables.setText("");
             tb_numeroNodos.setText("");
+            tb_numDeMorrales.setText("");
          fl_buscarRuta.showOpenDialog(this);
          llenarTab=new LlenarTablas(fl_buscarRuta.getSelectedFile().getPath());
          resolver=new ResolverProblema(fl_buscarRuta.getSelectedFile().getPath());
@@ -377,10 +378,11 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
         llenarTab=new LlenarTablas(fl_buscarRuta.getSelectedFile().getPath());
         if (fl_buscarRuta.getSelectedFile()!=null)
         {
+            
+            llenarTab.llenarTabla2(ta_solucion);
             tb_cantidadIteraciones.setText(String.valueOf(llenarTab.getCantidadIteraciones()));
             tb_cantidadVariables.setText(""+llenarTab.getCantidadVariables());
             tb_numeroNodos.setText(String.valueOf(llenarTab.getCantidadNodos()));
-            llenarTab.llenarTabla2(ta_solucion);
             tb_numDeMorrales.setText(""+Math.round(llenarTab.getNumeroOptimoMorrales()));
         }
     }//GEN-LAST:event_bt_calcularActionPerformed
