@@ -100,23 +100,24 @@ ResolverProblema resolver;
         double totalVolumenOc=0;
         double totalPesoOc=0;
         
-        String[] columnas={"Morral","Cajas llevadas","Cantidad de cajas","Volumen ocupado","Peso ocupado"};
+        String[] columnas={"Morral","Cantidad de cajas","Volumen ocupado","Peso ocupado","Cajas llevadas"};
         int contador=0;
             DefaultTableModel modeloTabla =new DefaultTableModel(null,columnas);
             for (int i = 0; i < cantidadMorrales; i++) {
                 String [] filas = {
                     ""+(i+1),
-                    ""+Math.round(resolver.getDistribucion().get(contador)),
-                    decimalFormat.format(resolver.getDistribucion().get(contador+1)),
-                    decimalFormat.format(resolver.getDistribucion().get(contador+2))
+                    resolver.getDistribucion().get(contador).toString(),
+                    resolver.getDistribucion().get(contador+1).toString(),
+                    resolver.getDistribucion().get(contador+2).toString(),
+                    resolver.getDistribucion().get(contador+3).toString()    
                 };
-                totalCantidadCajas+=resolver.getDistribucion().get(contador);
-                totalVolumenOc+=resolver.getDistribucion().get(contador+1);
-                totalPesoOc+=resolver.getDistribucion().get(contador+2);
+                totalCantidadCajas+=new Double(resolver.getDistribucion().get(contador).toString());
+                totalVolumenOc+=new Double(resolver.getDistribucion().get(contador+1).toString());
+                totalPesoOc+=new Double(resolver.getDistribucion().get(contador+2).toString());
                 modeloTabla.addRow(filas);
-                contador+=3;
+                contador+=4;
             }
-            String [] filas = {"Total",""+Math.round(totalCantidadCajas),decimalFormat.format(totalVolumenOc),decimalFormat.format(totalPesoOc)};
+           String [] filas = {"Total",""+Math.round(totalCantidadCajas),decimalFormat.format(totalVolumenOc),decimalFormat.format(totalPesoOc)};
             modeloTabla.addRow(filas);
             tabla.setModel(modeloTabla);
             tabla.getColumnModel().getColumn(0).setCellRenderer(render);

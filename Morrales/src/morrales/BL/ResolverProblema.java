@@ -189,7 +189,7 @@ public class ResolverProblema {
                     distribucion.add(cajasLlevadasTemp + MGrande);
                     distribucion.add(row[indiceVol]);
                     distribucion.add(row[indiceVol + 1]); 
-                    for (int j = indicePrimerCoeficientes; j < columns.length; i+= cantidadCajas) {
+                    for (int j = indicePrimerCoeficientes; j < columns.length; j+= cantidadCajas) {
                         indiceCaja++;
                         if(columns[j] > 0){
                             cajas+= indiceCaja +" ";                            
