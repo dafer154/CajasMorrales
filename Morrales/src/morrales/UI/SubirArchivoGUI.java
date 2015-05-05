@@ -75,6 +75,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
         });
 
         bt_calcular.setText("Calcular");
+        bt_calcular.setEnabled(false);
         bt_calcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_calcularActionPerformed(evt);
@@ -361,6 +362,9 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
             tb_numeroNodos.setText("");
             tb_numDeMorrales.setText("");
          fl_buscarRuta.showOpenDialog(this);
+         if (fl_buscarRuta.getSelectedFile()!=null)
+         bt_calcular.setEnabled(true);
+            
          llenarTab=new LlenarTablas(fl_buscarRuta.getSelectedFile().getPath());
          resolver=new ResolverProblema(fl_buscarRuta.getSelectedFile().getPath());
         tb_ruta.setText(fl_buscarRuta.getSelectedFile().getPath());
@@ -378,7 +382,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
         llenarTab=new LlenarTablas(fl_buscarRuta.getSelectedFile().getPath());
         if (fl_buscarRuta.getSelectedFile()!=null)
         {
-            
+           
             llenarTab.llenarTabla2(ta_solucion);
             tb_cantidadIteraciones.setText(String.valueOf(llenarTab.getCantidadIteraciones()));
             tb_cantidadVariables.setText(""+llenarTab.getCantidadVariables());
