@@ -100,7 +100,7 @@ ResolverProblema resolver;
         double totalVolumenOc=0;
         double totalPesoOc=0;
         
-        String[] columnas={"Morral","Cantidad de cajas","Volumen ocupado","Peso ocupado"};
+        String[] columnas={"Morral","Cajas llevadas","Cantidad de cajas","Volumen ocupado","Peso ocupado"};
         int contador=0;
             DefaultTableModel modeloTabla =new DefaultTableModel(null,columnas);
             for (int i = 0; i < cantidadMorrales; i++) {
