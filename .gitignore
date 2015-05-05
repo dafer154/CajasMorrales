@@ -56,4 +56,8 @@ nb-configuration.xml
 
 #java specific
 *.class
-Morrales/src/lp.lp
+Morrales/build.xml
+Morrales/build.xml
+Morrales/build.xml
+Morrales/nbproject/build-impl.xml
+*.lp
