@@ -17,7 +17,8 @@ import lpsolve.LpSolveException;
 public class ResolverProblema {
 
     LpSolve solver;
-    ArrayList<Double> propiedades, distribucion;
+    ArrayList<Double> propiedades;
+    ArrayList<Object> distribucion;
     int cantidadVariables, cantidadCajas;
     long cantIteraciones, cantNodos;
     double MGrande = 1000000;
@@ -32,11 +33,11 @@ public class ResolverProblema {
         this.propiedades = propiedades;
     }
 
-    public ArrayList<Double> getDistribucion() {
+    public ArrayList<Object> getDistribucion() {
         return distribucion;
     }
 
-    public void setDistribucion(ArrayList<Double> distribucion) {
+    public void setDistribucion(ArrayList<Object> distribucion) {
         this.distribucion = distribucion;
     }
 
@@ -73,7 +74,7 @@ public class ResolverProblema {
         this.propiedades = dal.leerTextoArchivo(rutaProblema);
         this.cantidadCajas = propiedades.get(0).intValue();
         this.cantidadVariables = cantidadCajas + cantidadCajas * cantidadCajas;
-        distribucion = new ArrayList<Double>();
+        distribucion = new ArrayList<Object>();
 
     }
 
@@ -155,16 +156,16 @@ public class ResolverProblema {
     public String resolver() {
         try {
             crearSolver();
+            agregarRestricciones();            
             agregarFuncionObjetivo();
-            agregarRestricciones();
             setVariablesBinarias();
-            solver.writeLp("src/lp.lp");
+            //solver.writeLp("src/lp.lp");
             //solver.setBbRule(LpSolve.NODE_FIRSTSELECT);
             solver.solve();            
-            solver.printLp();
-            solver.printSolution(1);
-            solver.printObjective();
-            solver.printConstraints(1);
+            //solver.printLp();
+            //solver.printSolution(1);
+            //solver.printObjective();
+            //solver.printConstraints(1);
             cantIteraciones = solver.getTotalIter();
             cantNodos = solver.getTotalNodes();
             cantOptimaMorrales = solver.getObjective();
@@ -172,6 +173,9 @@ public class ResolverProblema {
             int cont=0, indicePrimerMorral = 0, indiceVol;
             double cajasLlevadasTemp;
             double[] row = new double[4 * cantidadCajas + 1];
+            double[] columns;
+            int indiceCaja=0, indicePrimerCoeficientes=cantidadCajas;
+            String cajas="";
             solver.getConstraints(row);
             
             indicePrimerMorral = 3 * cantidadCajas;
@@ -180,12 +184,24 @@ public class ResolverProblema {
                 cajasLlevadasTemp = row[i];
                 if (cajasLlevadasTemp < 0) {
                     indiceVol = indicePrimerMorral - 2*cantidadCajas + 2*cont;
+                    columns = solver.getPtrVariables();
                     distribucion.add(cajasLlevadasTemp + MGrande);
                     distribucion.add(row[indiceVol]);
-                    distribucion.add(row[indiceVol + 1]);                    
-                }
+                    distribucion.add(row[indiceVol + 1]); 
+                    for (int j = indicePrimerCoeficientes; j < columns.length; j+= cantidadCajas) {
+                        indiceCaja++;
+                        if(columns[j] > 0){
+                            cajas+= indiceCaja +"  ";                            
+                        }
+                    }
+                    distribucion.add(cajas);
+                    indiceCaja=0;
+                    cajas="";                    
+                }                
+                indicePrimerCoeficientes++;
                 cont++;
             }
+            
 
             /*for (int i = cantidadCajas; i <= 2 * cantidadCajas; i += 2) {
                 volTemp = row[i];
