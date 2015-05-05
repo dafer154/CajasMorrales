@@ -241,4 +241,29 @@ public class ResolverProblema {
 
         }
     }
+    
+    public void setReglaBB(int codigoRegla){
+        switch (codigoRegla) {            
+            case 0:  solver.setBbRule(solver.NODE_FIRSTSELECT);
+                     break;
+            case 1:  solver.setBbRule(solver.NODE_GAPSELECT);
+                     break;
+            case 2:  solver.setBbRule(solver.NODE_RANGESELECT);
+                     break;
+            case 3:  solver.setBbRule(solver.NODE_FRACTIONSELECT);
+                     break;
+            case 4:  solver.setBbRule(solver.NODE_PSEUDOCOSTSELECT);
+                     break;
+            case 5:  solver.setBbRule(solver.NODE_PSEUDONONINTSELECT);
+                     break;
+            case 6:  solver.setBbRule(solver.NODE_PSEUDORATIOSELECT);
+                     break;
+            case 7:  solver.setBbRule(solver.NODE_USERSELECT);
+                     break;            
+            default: solver.setBbRule(solver.NODE_PSEUDONONINTSELECT 
+                    + solver.NODE_GREEDYMODE + solver.NODE_DYNAMICMODE 
+                    + solver.NODE_RCOSTFIXING);
+                     break;
+        }
+    }
 }
