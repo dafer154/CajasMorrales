@@ -24,6 +24,7 @@ public class ResolverProblema {
     double MGrande = 1000000;
     String mensajeResultado = "Por definir, pero ya todo funciona";
     double cantOptimaMorrales;
+    long tiempoEjecucion;
 
     public ArrayList<Double> getPropiedades() {
         return propiedades;
@@ -68,7 +69,11 @@ public class ResolverProblema {
     public int getCantidadVariables() {
         return cantidadVariables;
     }
-      
+
+    public long getTiempoEjecucion() {
+        return tiempoEjecucion;
+    }
+          
     public ResolverProblema(String rutaProblema) {
         DAL dal = new DAL();
         this.propiedades = dal.leerTextoArchivo(rutaProblema);
@@ -161,7 +166,11 @@ public class ResolverProblema {
             setVariablesBinarias();
             //solver.writeLp("src/lp.lp");
             //solver.setBbRule(LpSolve.NODE_FIRSTSELECT);
-            solver.solve();            
+            long time_start;
+            time_start = System.currentTimeMillis();
+            solver.solve();
+            tiempoEjecucion = System.currentTimeMillis() - time_start;
+            System.out.println("Tiempo de ejecución: " + tiempoEjecucion);
             //solver.printLp();
             //solver.printSolution(1);
             //solver.printObjective();
