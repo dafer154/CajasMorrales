@@ -23,15 +23,11 @@ public class Pruebas {
         propiedades.add(2.0);
         propiedades.add(5.0);
         
-        /*ResolverProblema solver = new ResolverProblema(propiedades);
-        solver.crearSolver();
-        solver.agregarFuncionObjetivo();
-        solver.agregarRestricciones();
-        solver.setVariablesBinarias();
+        System.out.print("hola");
+        
+        ResolverProblema solver = new ResolverProblema("src/2_8_15.txt");
         solver.resolver();
-        solver.solver.printLp();
-        solver.solver.printObjective();
-        solver.solver.printSolution(1);*/
+        
     }
     
 }

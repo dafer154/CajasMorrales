@@ -33,10 +33,12 @@ public class PruebaLpSolve {
 
             //Variables binarias
             int numColumns = solver.getNcolumns();
+            
+            double[] column = solver.getPtrColumn(1);
             for (int i = 1; i <= numColumns; i++) {
                 solver.setBinary(i, true);
             }
-            
+         
 
             //Maximize
             //solver.setMaxim();
@@ -54,7 +56,7 @@ public class PruebaLpSolve {
             solver.printSolution(1);
             solver.printObjective();
             solver.printConstraints(1);
-            solver.writeLp("src/lp.lp");
+            //solver.writeLp("src/lp.lp");
 
             // delete the problem and free memory
             solver.deleteLp();
