@@ -106,14 +106,14 @@ ResolverProblema resolver;
             for (int i = 0; i < cantidadMorrales; i++) {
                 String [] filas = {
                     ""+(i+1),
-                    resolver.getDistribucion().get(contador).toString(),
-                    resolver.getDistribucion().get(contador+1).toString(),
-                    resolver.getDistribucion().get(contador+2).toString(),
-                    resolver.getDistribucion().get(contador+3).toString()    
+                    ""+decimalFormat.format((double)resolver.getDistribucion().get(contador)),
+                    ""+decimalFormat.format((double)resolver.getDistribucion().get(contador+1)),
+                    ""+decimalFormat.format((double)resolver.getDistribucion().get(contador+2)),
+                    ""+resolver.getDistribucion().get(contador+3).toString()
                 };
-                totalCantidadCajas+=new Double(resolver.getDistribucion().get(contador).toString());
-                totalVolumenOc+=new Double(resolver.getDistribucion().get(contador+1).toString());
-                totalPesoOc+=new Double(resolver.getDistribucion().get(contador+2).toString());
+                totalCantidadCajas+=(double)resolver.getDistribucion().get(contador);
+                totalVolumenOc+=(double)resolver.getDistribucion().get(contador+1);
+                totalPesoOc+=(double)resolver.getDistribucion().get(contador+2);
                 modeloTabla.addRow(filas);
                 contador+=4;
             }
