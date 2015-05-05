@@ -174,7 +174,7 @@ public class ResolverProblema {
             double cajasLlevadasTemp;
             double[] row = new double[4 * cantidadCajas + 1];
             double[] columns;
-            int indiceCaja=0, indicePrimerCoeficientes=cantidadCajas+1;
+            int indiceCaja=0, indicePrimerCoeficientes=cantidadCajas;
             String cajas="";
             solver.getConstraints(row);
             
@@ -182,21 +182,23 @@ public class ResolverProblema {
             
             for (int i = indicePrimerMorral; i <= 4 * cantidadCajas; i++) {
                 cajasLlevadasTemp = row[i];
-                indicePrimerCoeficientes++;
                 if (cajasLlevadasTemp < 0) {
-                    columns = solver.getPtrRow(i);
                     indiceVol = indicePrimerMorral - 2*cantidadCajas + 2*cont;
+                    columns = solver.getPtrVariables();
                     distribucion.add(cajasLlevadasTemp + MGrande);
                     distribucion.add(row[indiceVol]);
                     distribucion.add(row[indiceVol + 1]); 
                     for (int j = indicePrimerCoeficientes; j < columns.length; j+= cantidadCajas) {
                         indiceCaja++;
                         if(columns[j] > 0){
-                            cajas+= indiceCaja +" ";                            
+                            cajas+= indiceCaja +"  ";                            
                         }
                     }
                     distribucion.add(cajas);
-                }
+                    indiceCaja=0;
+                    cajas="";                    
+                }                
+                indicePrimerCoeficientes++;
                 cont++;
             }
             
