@@ -10,6 +10,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.text.DecimalFormat;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
@@ -74,11 +75,15 @@ ResolverProblema resolver;
     
     
     
-    public void llenarTabla2(JTable tabla)
+    public boolean llenarTabla2(JTable tabla,int opcion)
     {
+        try {
+            
+        
         String pattern = "###.###";
         DecimalFormat decimalFormat = new DecimalFormat(pattern);
         
+        resolver.setReglaBB(opcion);
         resolver.resolver();
         double cantidadMorrales=Math.round(resolver.getCantOptimaMorrales());
         
@@ -124,6 +129,12 @@ ResolverProblema resolver;
             tabla.getColumnModel().getColumn(1).setCellRenderer(render);
             tabla.getColumnModel().getColumn(2).setCellRenderer(render);
             tabla.getColumnModel().getColumn(3).setCellRenderer(render);
+        } 
+        catch (IndexOutOfBoundsException e) {
+            return false;
+        }
+        return true;
+            
            
     }
     
@@ -140,6 +151,15 @@ ResolverProblema resolver;
     public double getCantidadVariables(){ 
        return resolver.getCantidadVariables();
     }
+    public long getTiempoDeEjecucion(){ 
+       return resolver.getTiempoEjecucion();
+    }
+    public boolean esfactibe(){ 
+       if (!resolver.getDistribucion().isEmpty())
+         return  true;
+               return    false;
+    }
+    
     
     
 }

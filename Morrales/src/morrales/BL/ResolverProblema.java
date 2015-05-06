@@ -80,6 +80,7 @@ public class ResolverProblema {
         this.cantidadCajas = propiedades.get(0).intValue();
         this.cantidadVariables = cantidadCajas + cantidadCajas * cantidadCajas;
         distribucion = new ArrayList<Object>();
+        crearSolver();
 
     }
 
@@ -160,7 +161,7 @@ public class ResolverProblema {
 
     public String resolver() {
         try {
-            crearSolver();
+            
             agregarRestricciones();            
             agregarFuncionObjetivo();
             setVariablesBinarias();
@@ -210,7 +211,7 @@ public class ResolverProblema {
                 indicePrimerCoeficientes++;
                 cont++;
             }
-            
+            solver.deleteLp();
 
             /*for (int i = cantidadCajas; i <= 2 * cantidadCajas; i += 2) {
                 volTemp = row[i];

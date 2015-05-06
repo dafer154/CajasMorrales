@@ -6,6 +6,7 @@
 package morrales.UI;
 
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import morrales.BL.ResolverProblema;
 
@@ -20,7 +21,10 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
      */
     public SubirArchivoGUI() {
         initComponents();
-        lb_factible.setVisible(false);
+        rb_default.setSelected(true);
+        for(int i=0;i<panelbb.getComponents().length;i++) {
+panelbb.getComponent(i).setEnabled(false);
+}
     }
 
     /**
@@ -34,8 +38,19 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
 
         fl_buscarRuta = new javax.swing.JFileChooser();
         jLabel2 = new javax.swing.JLabel();
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        gbox_bbrule = new javax.swing.ButtonGroup();
         jButton1 = new javax.swing.JButton();
+        panelbb = new javax.swing.JPanel();
+        bt_calcular = new javax.swing.JButton();
+        rb_node_gapselect = new javax.swing.JRadioButton();
+        rb_node_firstselect = new javax.swing.JRadioButton();
+        rb_node_rangeselect = new javax.swing.JRadioButton();
+        rb_node_pseudocostsselect = new javax.swing.JRadioButton();
+        rb_node_pseudononintselect = new javax.swing.JRadioButton();
+        rb_node_pseudorationselect = new javax.swing.JRadioButton();
+        rb_node_userselect = new javax.swing.JRadioButton();
+        rb_default = new javax.swing.JRadioButton();
+        rb_node_fractionselect = new javax.swing.JRadioButton();
         lb_subirArchivo = new javax.swing.JLabel();
         sp_areaDeRespuesta = new javax.swing.JSplitPane();
         panel1 = new javax.swing.JPanel();
@@ -61,15 +76,14 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
         tb_cantidadIteraciones = new javax.swing.JTextField();
         tb_cantidadVariables = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        bt_tiempoDeEjecucion = new javax.swing.JTextField();
-        lb_factible = new javax.swing.JLabel();
+        tb_tiempoDeEjecucion = new javax.swing.JTextField();
         sc_solucion = new javax.swing.JScrollPane();
         ta_solucion = new javax.swing.JTable();
         tb_ruta = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        bt_calcular = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
+
+        setMinimumSize(new java.awt.Dimension(817, 676));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/morrales/UI/imagenes/subirArchivoImagen.png"))); // NOI18N
         jButton1.setIconTextGap(3);
@@ -80,9 +94,99 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
             }
         });
 
+        panelbb.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelbb.setEnabled(false);
+
+        bt_calcular.setText("Calcular");
+        bt_calcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_calcularActionPerformed(evt);
+            }
+        });
+
+        gbox_bbrule.add(rb_node_gapselect);
+        rb_node_gapselect.setText("NODE_GAPSELECT");
+
+        gbox_bbrule.add(rb_node_firstselect);
+        rb_node_firstselect.setText("NODE_FIRSTSELECT ");
+
+        gbox_bbrule.add(rb_node_rangeselect);
+        rb_node_rangeselect.setText("NODE_RANGESELECT");
+
+        gbox_bbrule.add(rb_node_pseudocostsselect);
+        rb_node_pseudocostsselect.setText("NODE_PSEUDOCOSTSELECT ");
+
+        gbox_bbrule.add(rb_node_pseudononintselect);
+        rb_node_pseudononintselect.setText("NODE_PSEUDONONINTSELECT ");
+
+        gbox_bbrule.add(rb_node_pseudorationselect);
+        rb_node_pseudorationselect.setText("NODE_PSEUDORATIOSELECT ");
+
+        gbox_bbrule.add(rb_node_userselect);
+        rb_node_userselect.setText("NODE_USERSELECT");
+
+        gbox_bbrule.add(rb_default);
+        rb_default.setText("DEFAULT");
+
+        gbox_bbrule.add(rb_node_fractionselect);
+        rb_node_fractionselect.setText("NODE_FRACTIONSELECT");
+
+        javax.swing.GroupLayout panelbbLayout = new javax.swing.GroupLayout(panelbb);
+        panelbb.setLayout(panelbbLayout);
+        panelbbLayout.setHorizontalGroup(
+            panelbbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelbbLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(panelbbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelbbLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bt_calcular))
+                    .addGroup(panelbbLayout.createSequentialGroup()
+                        .addGroup(panelbbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelbbLayout.createSequentialGroup()
+                                .addComponent(rb_default)
+                                .addGap(18, 18, 18)
+                                .addComponent(rb_node_firstselect))
+                            .addComponent(rb_node_pseudononintselect, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelbbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rb_node_rangeselect)
+                            .addComponent(rb_node_gapselect))
+                        .addGap(10, 10, 10)
+                        .addGroup(panelbbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rb_node_pseudocostsselect, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rb_node_pseudorationselect))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelbbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rb_node_fractionselect)
+                            .addComponent(rb_node_userselect, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+        );
+        panelbbLayout.setVerticalGroup(
+            panelbbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelbbLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelbbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rb_node_pseudocostsselect)
+                    .addComponent(rb_node_rangeselect)
+                    .addComponent(rb_node_firstselect)
+                    .addComponent(rb_default)
+                    .addComponent(rb_node_userselect))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelbbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelbbLayout.createSequentialGroup()
+                        .addGap(0, 27, Short.MAX_VALUE)
+                        .addComponent(bt_calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelbbLayout.createSequentialGroup()
+                        .addGroup(panelbbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rb_node_pseudononintselect)
+                            .addComponent(rb_node_gapselect)
+                            .addComponent(rb_node_pseudorationselect)
+                            .addComponent(rb_node_fractionselect))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+
         lb_subirArchivo.setText("Subir Archivo");
 
-        sp_areaDeRespuesta.setResizeWeight(0.5);
         sp_areaDeRespuesta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         sp_areaDeRespuesta.setOneTouchExpandable(true);
         sp_areaDeRespuesta.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -122,7 +226,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
                             .addComponent(lb_pesoDeMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tb_pesoDeMorrales, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                            .addComponent(tb_pesoDeMorrales, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
                             .addComponent(tb_volMorrales)
                             .addComponent(tb_cantDeCajas)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -182,7 +286,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sc_requerimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(sc_requerimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -194,7 +298,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sc_requerimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+                .addComponent(sc_requerimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -228,8 +332,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
 
         jLabel6.setText("Tiempo de ejecucion");
 
-        lb_factible.setForeground(new java.awt.Color(255, 0, 0));
-        lb_factible.setText("No factible");
+        tb_tiempoDeEjecucion.setEditable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -238,22 +341,17 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lb_factible, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tb_numeroNodos, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                            .addComponent(tb_cantidadIteraciones)
-                            .addComponent(tb_cantidadVariables)
-                            .addComponent(bt_tiempoDeEjecucion))))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tb_numeroNodos, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                    .addComponent(tb_cantidadIteraciones)
+                    .addComponent(tb_cantidadVariables)
+                    .addComponent(tb_tiempoDeEjecucion))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -275,10 +373,8 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(bt_tiempoDeEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(lb_factible)
-                .addContainerGap())
+                    .addComponent(tb_tiempoDeEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         ta_solucion.setModel(new javax.swing.table.DefaultTableModel(
@@ -301,27 +397,27 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sc_solucion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+                    .addGroup(panel2Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 61, Short.MAX_VALUE))
+                    .addGroup(panel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lb_numDeMorrales)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tb_numDeMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panel2Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(tb_numDeMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         panel2Layout.setVerticalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sc_solucion, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sc_solucion, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tb_numDeMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lb_numDeMorrales))
+                    .addComponent(lb_numDeMorrales)
+                    .addComponent(tb_numDeMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -334,31 +430,6 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
             }
         });
 
-        bt_calcular.setText("Calcular");
-        bt_calcular.setEnabled(false);
-        bt_calcular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_calcularActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(264, Short.MAX_VALUE)
-                .addComponent(bt_calcular)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
-                .addComponent(bt_calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -369,31 +440,30 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(lb_subirArchivo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tb_ruta, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tb_ruta, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(sp_areaDeRespuesta))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelbb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(tb_ruta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lb_subirArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sp_areaDeRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tb_ruta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lb_subirArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelbb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sp_areaDeRespuesta))
         );
     }// </editor-fold>//GEN-END:initComponents
         ResolverProblema resolver;
@@ -404,10 +474,15 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
             tb_cantidadVariables.setText("");
             tb_numeroNodos.setText("");
             tb_numDeMorrales.setText("");
+            tb_tiempoDeEjecucion.setText("");
          fl_buscarRuta.showOpenDialog(this);
          if (fl_buscarRuta.getSelectedFile()!=null)
-         bt_calcular.setEnabled(true);
-            
+         {
+             for(int i=0;i<panelbb.getComponents().length;i++) {
+                panelbb.getComponent(i).setEnabled(true);
+             }
+         }
+    
          llenarTab=new LlenarTablas(fl_buscarRuta.getSelectedFile().getPath());
          resolver=new ResolverProblema(fl_buscarRuta.getSelectedFile().getPath());
         tb_ruta.setText(fl_buscarRuta.getSelectedFile().getPath());
@@ -418,6 +493,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
         tb_pesoDeMorrales.setText(decimalFormat.format(resolver.getPropiedades().get(2)));
         llenarTab.llenarTabla1(ta_requerimiento);
         ta_solucion.setModel(new DefaultTableModel());
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void bt_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_calcularActionPerformed
@@ -425,12 +501,38 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
         llenarTab=new LlenarTablas(fl_buscarRuta.getSelectedFile().getPath());
         if (fl_buscarRuta.getSelectedFile()!=null)
         {
-           
-            llenarTab.llenarTabla2(ta_solucion);
+            
+        boolean factible=true;
+        
+        
+            if (rb_node_firstselect.isSelected())
+                factible=llenarTab.llenarTabla2(ta_solucion,0);
+            else if (rb_node_gapselect.isSelected())
+                factible=llenarTab.llenarTabla2(ta_solucion,1);
+            else  if (rb_node_rangeselect.isSelected())
+                factible=llenarTab.llenarTabla2(ta_solucion,2);
+            else if (rb_node_fractionselect.isSelected())
+                factible=llenarTab.llenarTabla2(ta_solucion,3);
+            else if (rb_node_pseudocostsselect.isSelected())
+                factible=llenarTab.llenarTabla2(ta_solucion,4);
+            else if (rb_node_pseudononintselect.isSelected())
+                factible=llenarTab.llenarTabla2(ta_solucion,5);
+            else if (rb_node_pseudorationselect.isSelected())
+                factible=llenarTab.llenarTabla2(ta_solucion,6);
+            else if (rb_node_userselect.isSelected())
+                factible=llenarTab.llenarTabla2(ta_solucion,7);
+            else if (rb_default.isSelected())
+                factible=llenarTab.llenarTabla2(ta_solucion,8);
+            
+            if (factible){
             tb_cantidadIteraciones.setText(String.valueOf(llenarTab.getCantidadIteraciones()));
             tb_cantidadVariables.setText(""+llenarTab.getCantidadVariables());
             tb_numeroNodos.setText(String.valueOf(llenarTab.getCantidadNodos()));
             tb_numDeMorrales.setText(""+Math.round(llenarTab.getNumeroOptimoMorrales()));
+            tb_tiempoDeEjecucion.setText(""+llenarTab.getTiempoDeEjecucion());
+            }
+            else 
+                JOptionPane.showMessageDialog(null,"La entrada no es factible","Error de factibilidad",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_bt_calcularActionPerformed
 
@@ -449,9 +551,8 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_calcular;
-    private javax.swing.JTextField bt_tiempoDeEjecucion;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JFileChooser fl_buscarRuta;
+    private javax.swing.ButtonGroup gbox_bbrule;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -461,9 +562,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lb_cantdecajas;
-    private javax.swing.JLabel lb_factible;
     private javax.swing.JLabel lb_numDeMorrales;
     private javax.swing.JLabel lb_pesoDeMorrales;
     private javax.swing.JLabel lb_requerimiento;
@@ -471,6 +570,16 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
     private javax.swing.JLabel lb_volMorrales;
     private javax.swing.JPanel panel1;
     private javax.swing.JPanel panel2;
+    private javax.swing.JPanel panelbb;
+    private javax.swing.JRadioButton rb_default;
+    private javax.swing.JRadioButton rb_node_firstselect;
+    private javax.swing.JRadioButton rb_node_fractionselect;
+    private javax.swing.JRadioButton rb_node_gapselect;
+    private javax.swing.JRadioButton rb_node_pseudocostsselect;
+    private javax.swing.JRadioButton rb_node_pseudononintselect;
+    private javax.swing.JRadioButton rb_node_pseudorationselect;
+    private javax.swing.JRadioButton rb_node_rangeselect;
+    private javax.swing.JRadioButton rb_node_userselect;
     private javax.swing.JScrollPane sc_requerimiento;
     private javax.swing.JScrollPane sc_solucion;
     private javax.swing.JSplitPane sp_areaDeRespuesta;
@@ -483,6 +592,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
     private javax.swing.JTextField tb_numeroNodos;
     private javax.swing.JTextField tb_pesoDeMorrales;
     private javax.swing.JTextField tb_ruta;
+    private javax.swing.JTextField tb_tiempoDeEjecucion;
     private javax.swing.JTextField tb_volMorrales;
     // End of variables declaration//GEN-END:variables
 }
