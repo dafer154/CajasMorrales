@@ -24,6 +24,7 @@ public class ResolverProblema {
     double MGrande = 1000000;
     String mensajeResultado = "Por definir, pero ya todo funciona";
     double cantOptimaMorrales;
+    long tiempoEjecucion;
 
     public ArrayList<Double> getPropiedades() {
         return propiedades;
@@ -68,7 +69,11 @@ public class ResolverProblema {
     public int getCantidadVariables() {
         return cantidadVariables;
     }
-      
+
+    public long getTiempoEjecucion() {
+        return tiempoEjecucion;
+    }
+          
     public ResolverProblema(String rutaProblema) {
         DAL dal = new DAL();
         this.propiedades = dal.leerTextoArchivo(rutaProblema);
@@ -161,7 +166,11 @@ public class ResolverProblema {
             setVariablesBinarias();
             //solver.writeLp("src/lp.lp");
             //solver.setBbRule(LpSolve.NODE_FIRSTSELECT);
-            solver.solve();            
+            long time_start;
+            time_start = System.currentTimeMillis();
+            solver.solve();
+            tiempoEjecucion = System.currentTimeMillis() - time_start;
+            System.out.println("Tiempo de ejecución: " + tiempoEjecucion);
             //solver.printLp();
             //solver.printSolution(1);
             //solver.printObjective();
@@ -230,6 +239,31 @@ public class ResolverProblema {
                 e.printStackTrace();
             }
 
+        }
+    }
+    
+    public void setReglaBB(int codigoRegla){
+        switch (codigoRegla) {            
+            case 0:  solver.setBbRule(solver.NODE_FIRSTSELECT);
+                     break;
+            case 1:  solver.setBbRule(solver.NODE_GAPSELECT);
+                     break;
+            case 2:  solver.setBbRule(solver.NODE_RANGESELECT);
+                     break;
+            case 3:  solver.setBbRule(solver.NODE_FRACTIONSELECT);
+                     break;
+            case 4:  solver.setBbRule(solver.NODE_PSEUDOCOSTSELECT);
+                     break;
+            case 5:  solver.setBbRule(solver.NODE_PSEUDONONINTSELECT);
+                     break;
+            case 6:  solver.setBbRule(solver.NODE_PSEUDORATIOSELECT);
+                     break;
+            case 7:  solver.setBbRule(solver.NODE_USERSELECT);
+                     break;            
+            default: solver.setBbRule(solver.NODE_PSEUDONONINTSELECT 
+                    + solver.NODE_GREEDYMODE + solver.NODE_DYNAMICMODE 
+                    + solver.NODE_RCOSTFIXING);
+                     break;
         }
     }
 }
