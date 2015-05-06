@@ -154,12 +154,4 @@ ResolverProblema resolver;
     public long getTiempoDeEjecucion(){ 
        return resolver.getTiempoEjecucion();
     }
-    public boolean esfactibe(){ 
-       if (!resolver.getDistribucion().isEmpty())
-         return  true;
-               return    false;
-    }
-    
-    
-    
 }
