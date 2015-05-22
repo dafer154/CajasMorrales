@@ -25,8 +25,9 @@ public class Pruebas {
         
         System.out.print("hola");
         
-        ResolverProblema solver = new ResolverProblema("src/2_8_15.txt");
-        solver.resolver();
+        ResolverProblema solver = new ResolverProblema("src/Morrales/Pruebas/2_8_15.txt");
+        //solver.resolverCantMorrales();
+        solver.resolverDistribucionEq();
         
     }
     

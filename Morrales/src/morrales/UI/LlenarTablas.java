@@ -84,7 +84,7 @@ ResolverProblema resolver;
         DecimalFormat decimalFormat = new DecimalFormat(pattern);
         
         resolver.setReglaBB(opcion);
-        resolver.resolver();
+        resolver.resolverCantMorrales();
         double cantidadMorrales=Math.round(resolver.getCantOptimaMorrales());
         
          TableCellRenderer render = new TableCellRenderer() {

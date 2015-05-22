@@ -92,7 +92,7 @@ public class ResolverProblema {
         }
     }
 
-    public void agregarFuncionObjetivo() {
+    public void agregarFuncionObjetivoCantMorrales() {
         double[] fila = new double[cantidadVariables + 1];
 
         for (int i = 1; i <= cantidadCajas; i++) {
@@ -104,66 +104,182 @@ public class ResolverProblema {
             e.printStackTrace();
         }
     }
-
-    public void agregarRestricciones() {
+    
+    public void agregarFuncionObjetivoDistribucionEq(int cantMorrales) {
         try {
+            cantidadVariables = cantMorrales * (1 + cantidadCajas) - 1;
+            double[] fila = new double[cantidadVariables + 1];
+            fila[0] = 1;
+
+            double[] restriccion = new double[cantidadVariables + 1];
+            int contador = 3;
+            int salto;
+                
+            for (int i = 0; i <= cantMorrales; i++) {
+                salto = i + cantMorrales;
+                for (int j = salto; j <= cantMorrales; j++) {
+                    restriccion[j] = propiedades.get(contador + 1);
+                    restriccion[j+cantidadCajas] = - propiedades.get(contador + 3);
+                    contador += 2;
+                }
+                contador = 3;
+                solver.addConstraint(restriccion, LpSolve.LE, propiedades.get(2));
+                //restriccion_volumen = new double[cantidadVariables + 1];
+                //restriccion_peso = new double[cantidadVariables + 1];
+            }
+            solver.setObjFn(fila);
+        } catch (LpSolveException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void armarRestirccionCajaUnMorral(int cantMorrales){
+        try{
             //Las cajas solo va en un morral
             double[] restriccion = new double[cantidadVariables + 1];
             int salto, cotaSuperior;
-            for (int i = 1; i <= cantidadCajas; i++) {
-                salto = i * cantidadCajas + 1;
-                cotaSuperior = cantidadCajas + salto - 1;
+            for (int i = 1; i <= cantMorrales; i++) {
+                salto = i * cantMorrales + 1;
+                cotaSuperior = cantMorrales + salto - 1;
                 for (int j = salto; j <= cotaSuperior; j++) {
                     restriccion[j] = 1;
                 }
                 solver.addConstraint(restriccion, LpSolve.EQ, 1);
                 restriccion = new double[cantidadVariables + 1];
             }
-
+        }catch (LpSolveException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void armarRestriccionNoExcederPesoVolumen(int cantMorrales){
+        try{
             //Las cajas que se llevan en cada morral no puede exceder el volumen 
             //y el peso que soportan los morrales
-            restriccion = new double[cantidadVariables + 1];
+            double[] restriccion_volumen = new double[cantidadVariables + 1];
             double[] restriccion_peso = new double[cantidadVariables + 1];
             int contador = 3;
-            for (int i = 1; i <= cantidadCajas; i++) {
-                salto = i + cantidadCajas;
-                for (int j = salto; j <= cantidadVariables; j += cantidadCajas) {
-                    restriccion[j] = propiedades.get(contador);
+            int salto;
+            for (int i = 1; i <= cantMorrales; i++) {
+                salto = i + cantMorrales;
+                for (int j = salto; j <= cantidadVariables; j += cantMorrales) {
+                    restriccion_volumen[j] = propiedades.get(contador);
                     restriccion_peso[j] = propiedades.get(contador + 1);
                     contador += 2;
                 }
                 contador = 3;
-                solver.addConstraint(restriccion, LpSolve.LE, propiedades.get(1));
+                solver.addConstraint(restriccion_volumen, LpSolve.LE, propiedades.get(1));
                 solver.addConstraint(restriccion_peso, LpSolve.LE, propiedades.get(2));
-                restriccion = new double[cantidadVariables + 1];
+                restriccion_volumen = new double[cantidadVariables + 1];
                 restriccion_peso = new double[cantidadVariables + 1];
             }
+        }catch (LpSolveException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void armarRestriccionTecnica(int cantMorrales){
+        try{
+               //Control de morrales vacios
+            double[]restriccion = new double[cantidadVariables + 1];
+            int salto;
 
-            //Control de morrales vacios
-            restriccion = new double[cantidadVariables + 1];
-
-            for (int i = 1; i <= cantidadCajas; i++) {
-                salto = i + cantidadCajas;
+            for (int i = 1; i <= cantMorrales; i++) {
+                salto = i + cantMorrales;
                 restriccion[i] = -MGrande;
-                for (int j = salto; j <= cantidadVariables; j += cantidadCajas) {
+                for (int j = salto; j <= cantidadVariables; j += cantMorrales) {
                     restriccion[j] = 1;
                 }
                 solver.addConstraint(restriccion, LpSolve.LE, 0);
                 restriccion = new double[cantidadVariables + 1];
             }
+        }catch (LpSolveException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void agregarRestriccionesCantMorrales() {     
+        armarRestirccionCajaUnMorral(cantidadCajas);
+        armarRestriccionNoExcederPesoVolumen(cantidadCajas);
+        armarRestriccionTecnica(cantidadCajas);
+    }
+
+    public String resolverCantMorrales() {
+        try {
+            
+            agregarRestriccionesCantMorrales();            
+            agregarFuncionObjetivoCantMorrales();
+            setVariablesBinarias();
+            //solver.writeLp("src/lp.lp");
+            //solver.setBbRule(LpSolve.NODE_FIRSTSELECT);
+            long time_start;
+            time_start = System.currentTimeMillis();
+            solver.solve();
+            tiempoEjecucion = System.currentTimeMillis() - time_start;
+            System.out.println("Tiempo de ejecución: " + tiempoEjecucion);
+            //solver.printLp();
+            //solver.printSolution(1);
+            //solver.printObjective();
+            //solver.printConstraints(1);
+            cantIteraciones = solver.getTotalIter();
+            cantNodos = solver.getTotalNodes();
+            cantOptimaMorrales = solver.getObjective();
+
+            int cont=0, indicePrimerMorral = 0, indiceVol;
+            double cajasLlevadasTemp;
+            double[] row = new double[4 * cantidadCajas + 1];
+            double[] columns;
+            int indiceCaja=0, indicePrimerCoeficientes=cantidadCajas;
+            String cajas="";
+            solver.getConstraints(row);
+            
+            indicePrimerMorral = 3 * cantidadCajas;
+            
+            for (int i = indicePrimerMorral; i <= 4 * cantidadCajas; i++) {
+                cajasLlevadasTemp = row[i];
+                if (cajasLlevadasTemp < 0) {
+                    indiceVol = indicePrimerMorral - 2*cantidadCajas + 2*cont;
+                    columns = solver.getPtrVariables();
+                    distribucion.add(cajasLlevadasTemp + MGrande);
+                    distribucion.add(row[indiceVol]);
+                    distribucion.add(row[indiceVol + 1]); 
+                    for (int j = indicePrimerCoeficientes; j < columns.length; j+= cantidadCajas) {
+                        indiceCaja++;
+                        if(columns[j] > 0){
+                            cajas+= indiceCaja +"  ";                            
+                        }
+                    }
+                    distribucion.add(cajas);
+                    indiceCaja=0;
+                    cajas="";                    
+                }                
+                indicePrimerCoeficientes++;
+                cont++;
+            }
+            solver.deleteLp();
+
+            /*for (int i = cantidadCajas; i <= 2 * cantidadCajas; i += 2) {
+                volTemp = row[i];
+                if (volTemp > 0) {
+                    pesoTemp = row[i + 1];
+                    cajasLlevadasTemp = row[indicePrimerMorral+cont] + MGrande;
+                    distribucion.add(cajasLlevadasTemp);
+                    distribucion.add(volTemp);
+                    distribucion.add(pesoTemp);                    
+                }
+                cont++;
+            }*/
         } catch (LpSolveException e) {
             e.printStackTrace();
         }
-
-        //addConstraint(double[] row, int constrType, double rh) 
+        return mensajeResultado;
     }
-
-    public String resolver() {
+    
+    public String resolverDistribucionEq() {
         try {
             
-            agregarRestricciones();            
-            agregarFuncionObjetivo();
+            //agregarRestriccionesCantMorrales();            
+            agregarFuncionObjetivoDistribucionEq(2);
             setVariablesBinarias();
             //solver.writeLp("src/lp.lp");
             //solver.setBbRule(LpSolve.NODE_FIRSTSELECT);
