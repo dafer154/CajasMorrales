@@ -200,7 +200,7 @@ ResolverProblema resolver;
            
     }
     
-    public double getNumeroOptimoMorrales(){ 
+    public int getNumeroOptimoMorrales(){ 
        return resolver.getCantOptimaMorrales();
     }
     
