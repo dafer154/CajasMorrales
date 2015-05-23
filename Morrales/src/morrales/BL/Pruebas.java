@@ -13,19 +13,11 @@ import java.util.ArrayList;
  */
 public class Pruebas {
     
-    public static void main(String[] args) {
-        ArrayList propiedades = new ArrayList<Double>();
-        propiedades.add(2.0);
-        propiedades.add(8.0);
-        propiedades.add(15.0);
-        propiedades.add(6.0);
-        propiedades.add(10.0);
-        propiedades.add(2.0);
-        propiedades.add(5.0);
-                
-        ResolverProblema solver = new ResolverProblema("src/Morrales/Pruebas/10_16_4.txt");
-        solver.resolverCantMorrales(8);
-        solver.resolverDistribucionEq(8);
+    public static void main(String[] args) {                
+        ResolverProblema solver = new ResolverProblema("src/Morrales/Pruebas/20 cajas 4 morrales.txt");
+        //solver.resolverCantMorrales(8);
+        solver.cantOptimaMorrales = 4;
+        solver.resolverDistribucionEq(7);
         
     }
     
