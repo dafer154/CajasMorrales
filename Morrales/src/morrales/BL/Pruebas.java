@@ -22,11 +22,10 @@ public class Pruebas {
         propiedades.add(10.0);
         propiedades.add(2.0);
         propiedades.add(5.0);
-        
-        System.out.print("hola");
-        
-        ResolverProblema solver = new ResolverProblema("src/2_8_15.txt");
-        solver.resolver();
+                
+        ResolverProblema solver = new ResolverProblema("src/Morrales/Pruebas/10_16_4.txt");
+        solver.resolverCantMorrales(8);
+        solver.resolverDistribucionEq(8);
         
     }
     
