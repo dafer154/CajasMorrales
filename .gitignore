@@ -60,4 +60,5 @@ Morrales/build.xml
 Morrales/build.xml
 Morrales/build.xml
 Morrales/nbproject/build-impl.xml
-Morrales/nbproject/project.xml
+*.lp
+*.lp
