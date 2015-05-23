@@ -18,79 +18,79 @@ public class ResolverProblema {
 
     LpSolve solver;
     ArrayList<Double> propiedades;
-    ArrayList<Object> distribucion;
+    ArrayList distribucionCantMorrales, distribucionOptima;
     int cantidadVariables, cantidadCajas;
-    long cantIteraciones, cantNodos;
+    long cantIteracionesCantMorrales, cantNodosCantMorrales,
+            cantIteracionesDistribucion, cantNodosDistribucion;
     double MGrande = 1000000;
     String mensajeResultado = "Por definir, pero ya todo funciona";
-    double cantOptimaMorrales;
-    long tiempoEjecucion;
+    double cantOptimaMorrales, valorFunObjetivoDistribucion;
+    long tiempoEjecucionCantMorrales, tiempoEjecucionDistribucion;
+
+    public LpSolve getSolver() {
+        return solver;
+    }
 
     public ArrayList<Double> getPropiedades() {
         return propiedades;
     }
 
-    public void setPropiedades(ArrayList<Double> propiedades) {
-        this.propiedades = propiedades;
+    public ArrayList getDistribucionCantMorrales() {
+        return distribucionCantMorrales;
     }
 
-    public ArrayList<Object> getDistribucion() {
-        return distribucion;
-    }
-
-    public void setDistribucion(ArrayList<Object> distribucion) {
-        this.distribucion = distribucion;
-    }
-
-    public int getCantidadCajas() {
-        return cantidadCajas;
-    }
-
-    public void setCantidadCajas(int cantidadCajas) {
-        this.cantidadCajas = cantidadCajas;
-    }
-
-    public double getCantOptimaMorrales() {
-        return cantOptimaMorrales;
-    }
-
-    public void setCantOptimaMorrales(double cantOptimaMorrales) {
-        this.cantOptimaMorrales = cantOptimaMorrales;
-    }
-
-    public long getCantIteraciones() {
-        return cantIteraciones;
-    }
-
-    public long getCantNodos() {
-        return cantNodos;
+    public ArrayList getDistribucionOptima() {
+        return distribucionOptima;
     }
 
     public int getCantidadVariables() {
         return cantidadVariables;
     }
 
-    public long getTiempoEjecucion() {
-        return tiempoEjecucion;
+    public int getCantidadCajas() {
+        return cantidadCajas;
     }
-          
+
+    public long getCantIteracionesCantMorrales() {
+        return cantIteracionesCantMorrales;
+    }
+
+    public long getCantNodosCantMorrales() {
+        return cantNodosCantMorrales;
+    }
+
+    public long getCantIteracionesDistribucion() {
+        return cantIteracionesDistribucion;
+    }
+
+    public long getCantNodosDistribucion() {
+        return cantNodosDistribucion;
+    }
+
+    public double getCantOptimaMorrales() {
+        return cantOptimaMorrales;
+    }
+
+    public double getValorFunObjetivoDistribucion() {
+        return valorFunObjetivoDistribucion;
+    }
+
+    public long getTiempoEjecucionCantMorrales() {
+        return tiempoEjecucionCantMorrales;
+    }
+
+    public long getTiempoEjecucionDistribucion() {
+        return tiempoEjecucionDistribucion;
+    }
+ 
     public ResolverProblema(String rutaProblema) {
         DAL dal = new DAL();
         this.propiedades = dal.leerTextoArchivo(rutaProblema);
         this.cantidadCajas = propiedades.get(0).intValue();
-        this.cantidadVariables = cantidadCajas + cantidadCajas * cantidadCajas;
-        distribucion = new ArrayList<Object>();
-        crearSolver();
-
+        distribucionCantMorrales = new ArrayList();
+        distribucionOptima = new ArrayList();
     }
 
-    public void crearSolver() {
-        try {
-            solver = LpSolve.makeLp(0, cantidadVariables);
-        } catch (LpSolveException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void agregarFuncionObjetivoCantMorrales() {
         double[] fila = new double[cantidadVariables + 1];
@@ -107,25 +107,26 @@ public class ResolverProblema {
     
     public void agregarFuncionObjetivoDistribucionEq(int cantMorrales) {
         try {
-            cantidadVariables = cantMorrales * (1 + cantidadCajas) - 1;
+            //Necesito cantidadMorrales-1 variables para la f.o, más las de cada caja            
             double[] fila = new double[cantidadVariables + 1];
-            fila[0] = 1;
+            for (int i = 0; i < cantMorrales; i++) {
+                fila[i] = 1;
+            }
 
             double[] restriccion = new double[cantidadVariables + 1];
-            int contador = 3;
-            int salto;
+            int contador;
                 
-            for (int i = 0; i <= cantMorrales; i++) {
-                salto = i + cantMorrales;
-                for (int j = salto; j <= cantMorrales; j++) {
-                    restriccion[j] = propiedades.get(contador + 1);
-                    restriccion[j+cantidadCajas] = - propiedades.get(contador + 3);
+            for (int i = 1; i < cantMorrales; i++) {
+                contador = 4;
+                int cotaSuperior = cantidadVariables-cantMorrales+1;
+                for (int j = 4; j <= cotaSuperior; j += cantMorrales) {
+                    restriccion[i] = -1;
+                    restriccion[j] = propiedades.get(contador);
+                    restriccion[j+i] = -propiedades.get(contador);
                     contador += 2;
-                }
-                contador = 3;
-                solver.addConstraint(restriccion, LpSolve.LE, propiedades.get(2));
-                //restriccion_volumen = new double[cantidadVariables + 1];
-                //restriccion_peso = new double[cantidadVariables + 1];
+                }  
+                solver.addConstraint(restriccion, LpSolve.LE, 0);
+                restriccion = new double[cantidadVariables + 1];
             }
             solver.setObjFn(fila);
         } catch (LpSolveException e) {
@@ -133,13 +134,13 @@ public class ResolverProblema {
         }
     }
     
-    public void armarRestirccionCajaUnMorral(int cantMorrales){
+    public void armarRestirccionCajaUnMorral(int cantMorrales, int cantVariablesFO){
         try{
             //Las cajas solo va en un morral
             double[] restriccion = new double[cantidadVariables + 1];
             int salto, cotaSuperior;
-            for (int i = 1; i <= cantMorrales; i++) {
-                salto = i * cantMorrales + 1;
+            for (int i = 1; i <= cantidadCajas; i++) {
+                salto = cantVariablesFO + (i-1) * cantMorrales + 1;
                 cotaSuperior = cantMorrales + salto - 1;
                 for (int j = salto; j <= cotaSuperior; j++) {
                     restriccion[j] = 1;
@@ -152,7 +153,7 @@ public class ResolverProblema {
         }
     }
     
-    public void armarRestriccionNoExcederPesoVolumen(int cantMorrales){
+    public void armarRestriccionNoExcederPesoVolumen(int cantMorrales, int cantVariablesFO){
         try{
             //Las cajas que se llevan en cada morral no puede exceder el volumen 
             //y el peso que soportan los morrales
@@ -161,7 +162,7 @@ public class ResolverProblema {
             int contador = 3;
             int salto;
             for (int i = 1; i <= cantMorrales; i++) {
-                salto = i + cantMorrales;
+                salto = cantVariablesFO + i;
                 for (int j = salto; j <= cantidadVariables; j += cantMorrales) {
                     restriccion_volumen[j] = propiedades.get(contador);
                     restriccion_peso[j] = propiedades.get(contador + 1);
@@ -199,30 +200,37 @@ public class ResolverProblema {
     }
 
     public void agregarRestriccionesCantMorrales() {     
-        armarRestirccionCajaUnMorral(cantidadCajas);
-        armarRestriccionNoExcederPesoVolumen(cantidadCajas);
+        armarRestirccionCajaUnMorral(cantidadCajas, cantidadCajas);
+        armarRestriccionNoExcederPesoVolumen(cantidadCajas, cantidadCajas);
         armarRestriccionTecnica(cantidadCajas);
     }
+    
+    public void agregarRestriccionesDistribucion() {     
+        armarRestirccionCajaUnMorral((int) cantOptimaMorrales, (int) cantOptimaMorrales-1);
+        armarRestriccionNoExcederPesoVolumen((int) cantOptimaMorrales, (int) cantOptimaMorrales-1);
+    }
 
-    public String resolverCantMorrales() {
-        try {
-            
+    public String resolverCantMorrales(int codigoReglaBB) {
+        try { 
+            this.cantidadVariables = cantidadCajas + cantidadCajas * cantidadCajas;
+            solver = LpSolve.makeLp(0, cantidadVariables);
+            setReglaBB(codigoReglaBB);
             agregarRestriccionesCantMorrales();            
             agregarFuncionObjetivoCantMorrales();
-            setVariablesBinarias();
-            //solver.writeLp("src/lp.lp");
+            setVariablesBinarias(1);
+            //solver.writeLp("src/lpCantMorrales.lp");
             //solver.setBbRule(LpSolve.NODE_FIRSTSELECT);
             long time_start;
             time_start = System.currentTimeMillis();
             solver.solve();
-            tiempoEjecucion = System.currentTimeMillis() - time_start;
-            System.out.println("Tiempo de ejecución: " + tiempoEjecucion);
+            tiempoEjecucionCantMorrales = System.currentTimeMillis() - time_start;
+            System.out.println("Tiempo de ejecución: " + tiempoEjecucionCantMorrales);
             //solver.printLp();
             //solver.printSolution(1);
             //solver.printObjective();
             //solver.printConstraints(1);
-            cantIteraciones = solver.getTotalIter();
-            cantNodos = solver.getTotalNodes();
+            cantIteracionesCantMorrales = solver.getTotalIter();
+            cantNodosCantMorrales = solver.getTotalNodes();
             cantOptimaMorrales = solver.getObjective();
 
             int cont=0, indicePrimerMorral = 0, indiceVol;
@@ -240,16 +248,16 @@ public class ResolverProblema {
                 if (cajasLlevadasTemp < 0) {
                     indiceVol = indicePrimerMorral - 2*cantidadCajas + 2*cont;
                     columns = solver.getPtrVariables();
-                    distribucion.add(cajasLlevadasTemp + MGrande);
-                    distribucion.add(row[indiceVol]);
-                    distribucion.add(row[indiceVol + 1]); 
+                    distribucionCantMorrales.add(cajasLlevadasTemp + MGrande);
+                    distribucionCantMorrales.add(row[indiceVol]);
+                    distribucionCantMorrales.add(row[indiceVol + 1]); 
                     for (int j = indicePrimerCoeficientes; j < columns.length; j+= cantidadCajas) {
                         indiceCaja++;
                         if(columns[j] > 0){
                             cajas+= indiceCaja +"  ";                            
                         }
                     }
-                    distribucion.add(cajas);
+                    distribucionCantMorrales.add(cajas);
                     indiceCaja=0;
                     cajas="";                    
                 }                
@@ -257,99 +265,86 @@ public class ResolverProblema {
                 cont++;
             }
             solver.deleteLp();
-
-            /*for (int i = cantidadCajas; i <= 2 * cantidadCajas; i += 2) {
-                volTemp = row[i];
-                if (volTemp > 0) {
-                    pesoTemp = row[i + 1];
-                    cajasLlevadasTemp = row[indicePrimerMorral+cont] + MGrande;
-                    distribucion.add(cajasLlevadasTemp);
-                    distribucion.add(volTemp);
-                    distribucion.add(pesoTemp);                    
-                }
-                cont++;
-            }*/
         } catch (LpSolveException e) {
             e.printStackTrace();
         }
         return mensajeResultado;
     }
     
-    public String resolverDistribucionEq() {
+    public String resolverDistribucionEq(int codigoReglaBB) {
         try {
-            
-            //agregarRestriccionesCantMorrales();            
-            agregarFuncionObjetivoDistribucionEq(2);
-            setVariablesBinarias();
-            //solver.writeLp("src/lp.lp");
+            cantidadVariables = (int) cantOptimaMorrales*(1 + cantidadCajas) -1;
+            solver = LpSolve.makeLp(0, cantidadVariables);
+            setReglaBB(codigoReglaBB);
+            agregarRestriccionesDistribucion();            
+            agregarFuncionObjetivoDistribucionEq((int) cantOptimaMorrales);
+            setVariablesEnteras(1);
+            setVariablesBinarias((int) cantOptimaMorrales);
+            solver.writeLp("src/lpDistribucion.lp");
             //solver.setBbRule(LpSolve.NODE_FIRSTSELECT);
             long time_start;
             time_start = System.currentTimeMillis();
             solver.solve();
-            tiempoEjecucion = System.currentTimeMillis() - time_start;
-            System.out.println("Tiempo de ejecución: " + tiempoEjecucion);
+            tiempoEjecucionDistribucion = System.currentTimeMillis() - time_start;
+            System.out.println("Tiempo de ejecución: " + tiempoEjecucionDistribucion);
             //solver.printLp();
             //solver.printSolution(1);
             //solver.printObjective();
             //solver.printConstraints(1);
-            cantIteraciones = solver.getTotalIter();
-            cantNodos = solver.getTotalNodes();
-            cantOptimaMorrales = solver.getObjective();
+            cantIteracionesDistribucion = solver.getTotalIter();
+            cantNodosDistribucion = solver.getTotalNodes();
+            valorFunObjetivoDistribucion = solver.getObjective();
 
-            int cont=0, indicePrimerMorral = 0, indiceVol;
-            double cajasLlevadasTemp;
-            double[] row = new double[4 * cantidadCajas + 1];
-            double[] columns;
-            int indiceCaja=0, indicePrimerCoeficientes=cantidadCajas;
-            String cajas="";
+            int cont=3;
+            double[] row = new double[3*((int) cantOptimaMorrales) + cantidadCajas];
+            double[] variables = solver.getPtrVariables();
+            int indiceMorral, indiceCaja=0;
             solver.getConstraints(row);
             
-            indicePrimerMorral = 3 * cantidadCajas;
-            
-            for (int i = indicePrimerMorral; i <= 4 * cantidadCajas; i++) {
-                cajasLlevadasTemp = row[i];
-                if (cajasLlevadasTemp < 0) {
-                    indiceVol = indicePrimerMorral - 2*cantidadCajas + 2*cont;
-                    columns = solver.getPtrVariables();
-                    distribucion.add(cajasLlevadasTemp + MGrande);
-                    distribucion.add(row[indiceVol]);
-                    distribucion.add(row[indiceVol + 1]); 
-                    for (int j = indicePrimerCoeficientes; j < columns.length; j+= cantidadCajas) {
-                        indiceCaja++;
-                        if(columns[j] > 0){
-                            cajas+= indiceCaja +"  ";                            
-                        }
-                    }
-                    distribucion.add(cajas);
-                    indiceCaja=0;
-                    cajas="";                    
-                }                
-                indicePrimerCoeficientes++;
-                cont++;
+            for(int i=0; i < (int) cantOptimaMorrales; i++){
+                //Cantidad de cajas  inicial
+                distribucionOptima.add(0);
+                //Volumen inicial
+                distribucionOptima.add(0.0);
+                //Peso inicial
+                distribucionOptima.add(0.0);
+                //String cajas llevadas iniciales
+                distribucionOptima.add("");
             }
+            
+            indiceCaja = 1;
+            for (int i = (int) cantOptimaMorrales-1; i <= cantidadVariables - (int) cantOptimaMorrales;
+                    i+= (int) cantOptimaMorrales) {   
+                indiceMorral = 0;    
+                
+                for(int j = i; j < i+ (int) cantOptimaMorrales; j++){                     
+                    if(variables[j] > 0){
+                        distribucionOptima.set(indiceMorral, 
+                                (int) distribucionOptima.get(indiceMorral) + 1);
+                        distribucionOptima.set(indiceMorral + 1, 
+                               (double) distribucionOptima.get(indiceMorral + 1) + propiedades.get(cont));
+                        distribucionOptima.set(indiceMorral + 2, 
+                               (double) distribucionOptima.get(indiceMorral + 2) + propiedades.get(cont+1));
+                        distribucionOptima.set(indiceMorral + 3, 
+                               (String) distribucionOptima.get(indiceMorral + 3) + indiceCaja + "  ");
+                    }
+                    indiceMorral+=4;                    
+                }                
+                cont+=2;
+                indiceCaja ++;
+            }  
+                
             solver.deleteLp();
-
-            /*for (int i = cantidadCajas; i <= 2 * cantidadCajas; i += 2) {
-                volTemp = row[i];
-                if (volTemp > 0) {
-                    pesoTemp = row[i + 1];
-                    cajasLlevadasTemp = row[indicePrimerMorral+cont] + MGrande;
-                    distribucion.add(cajasLlevadasTemp);
-                    distribucion.add(volTemp);
-                    distribucion.add(pesoTemp);                    
-                }
-                cont++;
-            }*/
         } catch (LpSolveException e) {
             e.printStackTrace();
         }
         return mensajeResultado;
     }
 
-    public void setVariablesBinarias() {
+    public void setVariablesBinarias(int primeraVariableBinaria) {
         //Variables binarias
         int numColumns = solver.getNcolumns();
-        for (int i = 1; i <= numColumns; i++) {
+        for (int i = primeraVariableBinaria; i <= numColumns; i++) {
             try {
                 solver.setBinary(i, true);
             } catch (LpSolveException e) {
@@ -359,8 +354,21 @@ public class ResolverProblema {
         }
     }
     
-    public void setReglaBB(int codigoRegla){
-        switch (codigoRegla) {            
+    public void setVariablesEnteras(int primeraVariableEntera) {
+        //Variables binarias
+        int numColumns = (int) cantOptimaMorrales;
+        for (int i = primeraVariableEntera; i <= numColumns; i++) {
+            try {
+                solver.setInt(i, true);
+            } catch (LpSolveException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+    
+    public void setReglaBB(int codigoReglaBB){
+        switch (codigoReglaBB) {            
             case 0:  solver.setBbRule(solver.NODE_FIRSTSELECT);
                      break;
             case 1:  solver.setBbRule(solver.NODE_GAPSELECT);

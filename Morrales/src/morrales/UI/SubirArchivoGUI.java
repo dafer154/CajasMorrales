@@ -127,6 +127,11 @@ panelbb.getComponent(i).setEnabled(false);
 
         gbox_bbrule.add(rb_default);
         rb_default.setText("DEFAULT");
+        rb_default.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rb_defaultActionPerformed(evt);
+            }
+        });
 
         gbox_bbrule.add(rb_node_fractionselect);
         rb_node_fractionselect.setText("NODE_FRACTIONSELECT");
@@ -171,7 +176,6 @@ panelbb.getComponent(i).setEnabled(false);
                     .addComponent(rb_node_firstselect)
                     .addComponent(rb_default)
                     .addComponent(rb_node_userselect))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelbbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelbbLayout.createSequentialGroup()
                         .addGap(0, 27, Short.MAX_VALUE)
@@ -442,8 +446,7 @@ panelbb.getComponent(i).setEnabled(false);
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tb_ruta, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(sp_areaDeRespuesta))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -525,11 +528,11 @@ panelbb.getComponent(i).setEnabled(false);
                 factible=llenarTab.llenarTabla2(ta_solucion,8);
             
             if (factible){
-            tb_cantidadIteraciones.setText(String.valueOf(llenarTab.getCantidadIteraciones()));
-            tb_cantidadVariables.setText(""+llenarTab.getCantidadVariables());
-            tb_numeroNodos.setText(String.valueOf(llenarTab.getCantidadNodos()));
+            tb_cantidadIteraciones.setText(String.valueOf(llenarTab.getCantidadIteracionesCantMorrales()));
+            tb_cantidadVariables.setText(""+llenarTab.getCantidadVariablesCantMorrales());
+            tb_numeroNodos.setText(String.valueOf(llenarTab.getCantidadNodosCantMorrales()));
             tb_numDeMorrales.setText(""+Math.round(llenarTab.getNumeroOptimoMorrales()));
-            tb_tiempoDeEjecucion.setText(""+llenarTab.getTiempoDeEjecucion());
+            tb_tiempoDeEjecucion.setText(""+llenarTab.getTiempoDeEjecucionCantMorrales());
             }
             else 
                 JOptionPane.showMessageDialog(null,"La entrada no es factible","Error de factibilidad",JOptionPane.ERROR_MESSAGE);
@@ -547,6 +550,10 @@ panelbb.getComponent(i).setEnabled(false);
     private void tb_cantidadIteracionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_cantidadIteracionesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tb_cantidadIteracionesActionPerformed
+
+    private void rb_defaultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_defaultActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rb_defaultActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

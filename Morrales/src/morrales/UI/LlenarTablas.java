@@ -83,8 +83,8 @@ ResolverProblema resolver;
         String pattern = "###.###";
         DecimalFormat decimalFormat = new DecimalFormat(pattern);
         
-        resolver.setReglaBB(opcion);
-        resolver.resolverCantMorrales();
+        //Opción es la selección para las reglas de Branch and bound
+        resolver.resolverCantMorrales(opcion);
         double cantidadMorrales=Math.round(resolver.getCantOptimaMorrales());
         
          TableCellRenderer render = new TableCellRenderer() {
@@ -111,14 +111,14 @@ ResolverProblema resolver;
             for (int i = 0; i < cantidadMorrales; i++) {
                 String [] filas = {
                     ""+(i+1),
-                    ""+decimalFormat.format((double)resolver.getDistribucion().get(contador)),
-                    ""+decimalFormat.format((double)resolver.getDistribucion().get(contador+1)),
-                    ""+decimalFormat.format((double)resolver.getDistribucion().get(contador+2)),
-                    ""+resolver.getDistribucion().get(contador+3).toString()
+                    ""+decimalFormat.format((double)resolver.getDistribucionCantMorrales().get(contador)),
+                    ""+decimalFormat.format((double)resolver.getDistribucionCantMorrales().get(contador+1)),
+                    ""+decimalFormat.format((double)resolver.getDistribucionCantMorrales().get(contador+2)),
+                    ""+resolver.getDistribucionCantMorrales().get(contador+3).toString()
                 };
-                totalCantidadCajas+=(double)resolver.getDistribucion().get(contador);
-                totalVolumenOc+=(double)resolver.getDistribucion().get(contador+1);
-                totalPesoOc+=(double)resolver.getDistribucion().get(contador+2);
+                totalCantidadCajas+=(double)resolver.getDistribucionCantMorrales().get(contador);
+                totalVolumenOc+=(double)resolver.getDistribucionCantMorrales().get(contador+1);
+                totalPesoOc+=(double)resolver.getDistribucionCantMorrales().get(contador+2);
                 modeloTabla.addRow(filas);
                 contador+=4;
             }
@@ -142,20 +142,20 @@ ResolverProblema resolver;
        return resolver.getCantOptimaMorrales();
     }
     
-    public long getCantidadNodos(){ 
-       return resolver.getCantNodos();
+    public long getCantidadNodosCantMorrales(){ 
+       return resolver.getCantNodosCantMorrales();
     }
-    public long getCantidadIteraciones(){ 
-       return resolver.getCantIteraciones();
+    public long getCantidadIteracionesCantMorrales(){ 
+       return resolver.getCantIteracionesCantMorrales();
     }
-    public double getCantidadVariables(){ 
+    public double getCantidadVariablesCantMorrales(){ 
        return resolver.getCantidadVariables();
     }
-    public long getTiempoDeEjecucion(){ 
-       return resolver.getTiempoEjecucion();
+    public long getTiempoDeEjecucionCantMorrales(){ 
+       return resolver.getTiempoEjecucionCantMorrales();
     }
     public boolean esfactibe(){ 
-       if (!resolver.getDistribucion().isEmpty())
+       if (!resolver.getDistribucionCantMorrales().isEmpty())
          return  true;
                return    false;
     }

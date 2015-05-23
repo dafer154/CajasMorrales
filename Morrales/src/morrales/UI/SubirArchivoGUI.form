@@ -41,7 +41,6 @@
                       <Component id="tb_ruta" min="-2" pref="292" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="33" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Component id="sp_areaDeRespuesta" max="32767" attributes="0"/>
               </Group>
@@ -146,7 +145,6 @@
                       <Component id="rb_default" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rb_node_userselect" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="0" pref="27" max="32767" attributes="0"/>
@@ -238,6 +236,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="DEFAULT"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rb_defaultActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rb_node_fractionselect">
           <Properties>
