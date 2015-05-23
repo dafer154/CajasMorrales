@@ -32,18 +32,19 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="sp_areaDeRespuesta" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lb_subirArchivo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="tb_ruta" min="-2" pref="292" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" pref="33" max="-2" attributes="0"/>
-          </Group>
-          <Component id="sp_areaDeRespuesta" max="32767" attributes="0"/>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="panelbb" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="lb_subirArchivo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="tb_ruta" min="-2" pref="292" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="33" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="panelbb" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -453,14 +454,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="lb_numDeMorrales" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tb_numDeMorrales" min="-2" pref="106" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="sp_areaRespuestaCantidadMorrales" alignment="0" max="32767" attributes="0"/>
+                  <Component id="sp_areaRespuestaCantidadMorrales" alignment="0" pref="701" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -468,17 +462,18 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="sp_areaRespuestaCantidadMorrales" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lb_numDeMorrales" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tb_numDeMorrales" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
             <Container class="javax.swing.JSplitPane" name="sp_areaRespuestaCantidadMorrales">
+              <Properties>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor de Mano"/>
+                </Property>
+                <Property name="oneTouchExpandable" type="boolean" value="true"/>
+              </Properties>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
               <SubComponents>
@@ -500,6 +495,12 @@
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="sc_solucionCantidadMorrales" pref="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="lb_numDeMorrales" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="tb_numDeMorrales" min="-2" pref="106" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -512,6 +513,11 @@
                               <Component id="pn_solucionCantidadMorrales" min="-2" pref="138" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="sc_solucionCantidadMorrales" pref="327" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lb_numDeMorrales" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tb_numDeMorrales" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -543,11 +549,11 @@
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="tb_cantidadVariables" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="tb_cantidadIteraciones" alignment="0" pref="124" max="32767" attributes="0"/>
-                                                  <Component id="tb_numeroNodos" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="tb_cantidadVariablesCantMorrales" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="tb_cantidadIteracionesCantMorrales" alignment="0" pref="124" max="32767" attributes="0"/>
+                                                  <Component id="tb_numeroNodosCantMorrales" alignment="0" max="32767" attributes="0"/>
                                               </Group>
-                                              <Component id="tb_tiempoDeEjecucion" alignment="1" min="-2" pref="124" max="-2" attributes="0"/>
+                                              <Component id="tb_tiempoDeEjecucionCantMorrales" alignment="1" min="-2" pref="124" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -563,22 +569,22 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tb_numeroNodos" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tb_numeroNodosCantMorrales" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tb_cantidadIteraciones" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tb_cantidadIteracionesCantMorrales" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tb_cantidadVariables" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tb_cantidadVariablesCantMorrales" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tb_tiempoDeEjecucion" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tb_tiempoDeEjecucionCantMorrales" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
@@ -609,20 +615,20 @@
                             <Property name="text" type="java.lang.String" value="Cantidad de variables generadas"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="tb_numeroNodos">
+                        <Component class="javax.swing.JTextField" name="tb_numeroNodosCantMorrales">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="tb_cantidadIteraciones">
+                        <Component class="javax.swing.JTextField" name="tb_cantidadIteracionesCantMorrales">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tb_cantidadIteracionesActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tb_cantidadIteracionesCantMorralesActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="tb_cantidadVariables">
+                        <Component class="javax.swing.JTextField" name="tb_cantidadVariablesCantMorrales">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                           </Properties>
@@ -632,7 +638,7 @@
                             <Property name="text" type="java.lang.String" value="Tiempo de ejecucion"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="tb_tiempoDeEjecucion">
+                        <Component class="javax.swing.JTextField" name="tb_tiempoDeEjecucionCantMorrales">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                           </Properties>
@@ -663,6 +669,16 @@
                         </Component>
                       </SubComponents>
                     </Container>
+                    <Component class="javax.swing.JLabel" name="lb_numDeMorrales">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="El n&#xfa;mero &#xf3;ptimo de morrales es:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="tb_numDeMorrales">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="jPanel2">
@@ -678,10 +694,15 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="sc_solucionCantidadMorrales1" min="-2" pref="330" max="-2" attributes="0"/>
-                                  <Component id="pn_solucionCantidadMorrales1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="pn_solucionCantidadMorrales1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="16" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="sc_distribucionCantidadMorrales" pref="0" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -691,21 +712,21 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="pn_solucionCantidadMorrales1" min="-2" pref="138" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="sc_solucionCantidadMorrales1" min="-2" pref="327" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="sc_distribucionCantidadMorrales" pref="353" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JScrollPane" name="sc_solucionCantidadMorrales1">
+                    <Container class="javax.swing.JScrollPane" name="sc_distribucionCantidadMorrales">
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                       </AuxValues>
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="ta_solucionCantidadMorrales1">
+                        <Component class="javax.swing.JTable" name="ta_solucionDistribucionEquilibrada">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="0" rowCount="0"/>
@@ -747,10 +768,10 @@
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="tb_numeroNodos1" alignment="1" pref="124" max="32767" attributes="0"/>
-                                              <Component id="tb_cantidadIteraciones1" alignment="1" max="32767" attributes="0"/>
-                                              <Component id="tb_cantidadVariables1" alignment="1" max="32767" attributes="0"/>
-                                              <Component id="tb_tiempoDeEjecucion1" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="tb_numeroNodosDistriEquilibrada" alignment="1" pref="124" max="32767" attributes="0"/>
+                                              <Component id="tb_cantidadIteracionesDistriEquilibrada" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="tb_cantidadVariablesDistriEquilibrada" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="tb_tiempoDeEjecucionDistriEquilibrada" alignment="1" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -765,22 +786,22 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tb_numeroNodos1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tb_numeroNodosDistriEquilibrada" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tb_cantidadIteraciones1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tb_cantidadIteracionesDistriEquilibrada" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tb_cantidadVariables1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tb_cantidadVariablesDistriEquilibrada" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tb_tiempoDeEjecucion1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tb_tiempoDeEjecucionDistriEquilibrada" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
@@ -811,20 +832,20 @@
                             <Property name="text" type="java.lang.String" value="Cantidad de variables generadas"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="tb_numeroNodos1">
+                        <Component class="javax.swing.JTextField" name="tb_numeroNodosDistriEquilibrada">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="tb_cantidadIteraciones1">
+                        <Component class="javax.swing.JTextField" name="tb_cantidadIteracionesDistriEquilibrada">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tb_cantidadIteraciones1ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tb_cantidadIteracionesDistriEquilibradaActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="tb_cantidadVariables1">
+                        <Component class="javax.swing.JTextField" name="tb_cantidadVariablesDistriEquilibrada">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                           </Properties>
@@ -834,7 +855,7 @@
                             <Property name="text" type="java.lang.String" value="Tiempo de ejecucion"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="tb_tiempoDeEjecucion1">
+                        <Component class="javax.swing.JTextField" name="tb_tiempoDeEjecucionDistriEquilibrada">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                           </Properties>
@@ -845,16 +866,6 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="lb_numDeMorrales">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="El n&#xfa;mero &#xf3;ptimo de morrales es:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="tb_numDeMorrales">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-              </Properties>
-            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

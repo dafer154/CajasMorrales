@@ -19,7 +19,8 @@ public class ResolverProblema {
     LpSolve solver;
     ArrayList<Double> propiedades;
     ArrayList distribucionCantMorrales, distribucionOptima;
-    int cantidadVariables, cantidadCajas;
+    int cantidadVariables, cantidadCajas, cantVariablesCantMorrales, 
+            cantVariablesDistribucion;
     long cantIteracionesCantMorrales, cantNodosCantMorrales,
             cantIteracionesDistribucion, cantNodosDistribucion;
     double MGrande = 1000000;
@@ -81,6 +82,14 @@ public class ResolverProblema {
 
     public long getTiempoEjecucionDistribucion() {
         return tiempoEjecucionDistribucion;
+    }
+
+    public int getCantVariablesCantMorrales() {
+        return cantVariablesCantMorrales;
+    }
+
+    public int getCantVariablesDistribucion() {
+        return cantVariablesDistribucion;
     }
  
     public ResolverProblema(String rutaProblema) {
@@ -213,6 +222,7 @@ public class ResolverProblema {
     public String resolverCantMorrales(int codigoReglaBB) {
         try { 
             this.cantidadVariables = cantidadCajas + cantidadCajas * cantidadCajas;
+            cantVariablesCantMorrales = cantidadVariables;
             solver = LpSolve.makeLp(0, cantidadVariables);
             setReglaBB(codigoReglaBB);
             agregarRestriccionesCantMorrales();            
@@ -274,6 +284,7 @@ public class ResolverProblema {
     public String resolverDistribucionEq(int codigoReglaBB) {
         try {
             cantidadVariables = (int) cantOptimaMorrales*(1 + cantidadCajas) -1;
+            cantVariablesDistribucion = cantidadVariables;
             solver = LpSolve.makeLp(0, cantidadVariables);
             setReglaBB(codigoReglaBB);
             agregarRestriccionesDistribucion();            
