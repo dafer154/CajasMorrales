@@ -125,19 +125,19 @@ public class ResolverProblema {
 
             double[] restriccionValorAbsolutoPositvo = new double[cantidadVariables + 1];
             double[] restriccionValorAbsolutoNegativo = new double[cantidadVariables + 1];
-            int contador;
+            int indicePesos;
                 
             for (int i = 1; i < cantMorrales; i++) {
-                contador = 4;
+                indicePesos = 4;
                 int cotaSuperior = cantidadVariables-cantMorrales+1;
-                for (int j = 4; j <= cotaSuperior; j += cantMorrales) {
+                for (int j = cantMorrales; j <= cotaSuperior; j += cantMorrales) {
                     restriccionValorAbsolutoPositvo[i] = -1;
                     restriccionValorAbsolutoNegativo[i] = -1;
-                    restriccionValorAbsolutoPositvo[j] = propiedades.get(contador);
-                    restriccionValorAbsolutoNegativo[j] = -propiedades.get(contador);
-                    restriccionValorAbsolutoPositvo[j+i] = -propiedades.get(contador);
-                    restriccionValorAbsolutoNegativo[j+i] = propiedades.get(contador);
-                    contador += 2;
+                    restriccionValorAbsolutoPositvo[j] = propiedades.get(indicePesos);
+                    restriccionValorAbsolutoNegativo[j] = -propiedades.get(indicePesos);
+                    restriccionValorAbsolutoPositvo[j+i] = -propiedades.get(indicePesos);
+                    restriccionValorAbsolutoNegativo[j+i] = propiedades.get(indicePesos);
+                    indicePesos += 2;
                 }  
                 solver.addConstraint(restriccionValorAbsolutoPositvo, LpSolve.LE, 0);
                 solver.addConstraint(restriccionValorAbsolutoNegativo, LpSolve.LE, 0);
