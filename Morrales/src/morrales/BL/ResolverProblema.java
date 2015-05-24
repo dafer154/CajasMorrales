@@ -124,7 +124,7 @@ public class ResolverProblema {
             }
 
             double[] restriccionValorAbsolutoPositvo = new double[cantidadVariables + 1];
-            //double[] restriccionValorAbsolutoNegativo = new double[cantidadVariables + 1];
+            double[] restriccionValorAbsolutoNegativo = new double[cantidadVariables + 1];
             int contador;
                 
             for (int i = 1; i < cantMorrales; i++) {
@@ -132,17 +132,17 @@ public class ResolverProblema {
                 int cotaSuperior = cantidadVariables-cantMorrales+1;
                 for (int j = 4; j <= cotaSuperior; j += cantMorrales) {
                     restriccionValorAbsolutoPositvo[i] = -1;
-                    //restriccionValorAbsolutoNegativo[i] = -1;
+                    restriccionValorAbsolutoNegativo[i] = -1;
                     restriccionValorAbsolutoPositvo[j] = propiedades.get(contador);
-                    //restriccionValorAbsolutoNegativo[j] = -propiedades.get(contador);
+                    restriccionValorAbsolutoNegativo[j] = -propiedades.get(contador);
                     restriccionValorAbsolutoPositvo[j+i] = -propiedades.get(contador);
-                    //restriccionValorAbsolutoNegativo[j+i] = propiedades.get(contador);
+                    restriccionValorAbsolutoNegativo[j+i] = propiedades.get(contador);
                     contador += 2;
                 }  
                 solver.addConstraint(restriccionValorAbsolutoPositvo, LpSolve.LE, 0);
-                //solver.addConstraint(restriccionValorAbsolutoNegativo, LpSolve.LE, 0);
+                solver.addConstraint(restriccionValorAbsolutoNegativo, LpSolve.LE, 0);
                 restriccionValorAbsolutoPositvo = new double[cantidadVariables + 1];
-                //restriccionValorAbsolutoNegativo = new double[cantidadVariables + 1];
+                restriccionValorAbsolutoNegativo = new double[cantidadVariables + 1];
             }
             solver.setObjFn(fila);
         } catch (LpSolveException e) {
