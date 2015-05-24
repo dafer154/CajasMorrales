@@ -646,7 +646,7 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
         ta_solucionCantidadMorrales.setModel(new DefaultTableModel());
         ta_solucionDistribucionEquilibrada.setModel(new DefaultTableModel());
         } catch (NullPointerException e) {
-            JOptionPane.showConfirmDialog(null, "Debe seleccionar un archivo");
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un archivo");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -711,13 +711,13 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
             tb_cantidadVariablesCantMorrales.setText(""+llenarTab.getCantidadVariablesCantMorrales());
             tb_numeroNodosCantMorrales.setText(String.valueOf(llenarTab.getCantidadNodosCantMorrales()));
             tb_numDeMorrales.setText(""+Math.round(llenarTab.getNumeroOptimoMorrales()));
-            tb_tiempoDeEjecucionCantMorrales.setText(""+llenarTab.getTiempoDeEjecucionCantMorrales());
+            tb_tiempoDeEjecucionCantMorrales.setText(""+llenarTab.getTiempoDeEjecucionCantMorrales()+" (m/s)");
             
             //tabla de distribucion
             tb_cantidadIteracionesDistriEquilibrada.setText(String.valueOf(llenarTab.getCantidadIteracionesDistMorrales()));
             tb_cantidadVariablesDistriEquilibrada.setText(""+llenarTab.getCantidadVariablesDistMorrales());
             tb_numeroNodosDistriEquilibrada.setText(String.valueOf(llenarTab.getCantidadNodosDistMorrales()));
-            tb_tiempoDeEjecucionDistriEquilibrada.setText(""+llenarTab.getTiempoDeEjecucionDistMorrales());
+            tb_tiempoDeEjecucionDistriEquilibrada.setText(""+llenarTab.getTiempoDeEjecucionDistMorrales()+" (m/s)");
             }
             else 
                 JOptionPane.showMessageDialog(null,"La entrada no es factible","Error de factibilidad",JOptionPane.ERROR_MESSAGE);
