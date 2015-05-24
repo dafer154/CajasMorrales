@@ -22,9 +22,10 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
     public SubirArchivoGUI() {
         initComponents();
         rb_default.setSelected(true);
-        for(int i=0;i<panelbb.getComponents().length;i++) {
-panelbb.getComponent(i).setEnabled(false);
-}
+        for(int i=0;i<panelbb.getComponents().length;i++) 
+        {
+            panelbb.getComponent(i).setEnabled(false);    
+        }
     }
 
     /**
@@ -53,7 +54,7 @@ panelbb.getComponent(i).setEnabled(false);
         rb_node_fractionselect = new javax.swing.JRadioButton();
         lb_subirArchivo = new javax.swing.JLabel();
         sp_areaDeRespuesta = new javax.swing.JSplitPane();
-        panel1 = new javax.swing.JPanel();
+        pn_areaRequerimiento = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         lb_requerimiento = new javax.swing.JLabel();
         lb_cantdecajas = new javax.swing.JLabel();
@@ -64,21 +65,36 @@ panelbb.getComponent(i).setEnabled(false);
         tb_pesoDeMorrales = new javax.swing.JTextField();
         sc_requerimiento = new javax.swing.JScrollPane();
         ta_requerimiento = new javax.swing.JTable();
-        panel2 = new javax.swing.JPanel();
-        lb_numDeMorrales = new javax.swing.JLabel();
-        tb_numDeMorrales = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
+        pn_areaSolucionCantidadMorrales = new javax.swing.JPanel();
+        sp_areaRespuestaCantidadMorrales = new javax.swing.JSplitPane();
+        pn_areaSolucion = new javax.swing.JPanel();
+        pn_solucionCantidadMorrales = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        tb_numeroNodos = new javax.swing.JTextField();
-        tb_cantidadIteraciones = new javax.swing.JTextField();
-        tb_cantidadVariables = new javax.swing.JTextField();
+        tb_numeroNodosCantMorrales = new javax.swing.JTextField();
+        tb_cantidadIteracionesCantMorrales = new javax.swing.JTextField();
+        tb_cantidadVariablesCantMorrales = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        tb_tiempoDeEjecucion = new javax.swing.JTextField();
-        sc_solucion = new javax.swing.JScrollPane();
-        ta_solucion = new javax.swing.JTable();
+        tb_tiempoDeEjecucionCantMorrales = new javax.swing.JTextField();
+        sc_solucionCantidadMorrales = new javax.swing.JScrollPane();
+        ta_solucionCantidadMorrales = new javax.swing.JTable();
+        lb_numDeMorrales = new javax.swing.JLabel();
+        tb_numDeMorrales = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        sc_distribucionCantidadMorrales = new javax.swing.JScrollPane();
+        ta_solucionDistribucionEquilibrada = new javax.swing.JTable();
+        pn_solucionCantidadMorrales1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        tb_numeroNodosDistriEquilibrada = new javax.swing.JTextField();
+        tb_cantidadIteracionesDistriEquilibrada = new javax.swing.JTextField();
+        tb_cantidadVariablesDistriEquilibrada = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        tb_tiempoDeEjecucionDistriEquilibrada = new javax.swing.JTextField();
         tb_ruta = new javax.swing.JTextField();
 
         jLabel2.setText("jLabel2");
@@ -127,11 +143,6 @@ panelbb.getComponent(i).setEnabled(false);
 
         gbox_bbrule.add(rb_default);
         rb_default.setText("DEFAULT");
-        rb_default.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rb_defaultActionPerformed(evt);
-            }
-        });
 
         gbox_bbrule.add(rb_node_fractionselect);
         rb_node_fractionselect.setText("NODE_FRACTIONSELECT");
@@ -283,39 +294,38 @@ panelbb.getComponent(i).setEnabled(false);
         ta_requerimiento.setEnabled(false);
         sc_requerimiento.setViewportView(ta_requerimiento);
 
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pn_areaRequerimientoLayout = new javax.swing.GroupLayout(pn_areaRequerimiento);
+        pn_areaRequerimiento.setLayout(pn_areaRequerimientoLayout);
+        pn_areaRequerimientoLayout.setHorizontalGroup(
+            pn_areaRequerimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_areaRequerimientoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sc_requerimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
-                    .addGroup(panel1Layout.createSequentialGroup()
+                .addGroup(pn_areaRequerimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pn_areaRequerimientoLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(sc_requerimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+        pn_areaRequerimientoLayout.setVerticalGroup(
+            pn_areaRequerimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_areaRequerimientoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sc_requerimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                .addComponent(sc_requerimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        sp_areaDeRespuesta.setLeftComponent(panel1);
+        sp_areaDeRespuesta.setLeftComponent(pn_areaRequerimiento);
 
-        lb_numDeMorrales.setText("El número óptimo de morrales es:");
+        sp_areaRespuestaCantidadMorrales.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        sp_areaRespuestaCantidadMorrales.setOneTouchExpandable(true);
 
-        tb_numDeMorrales.setEditable(false);
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        pn_solucionCantidadMorrales.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("Solucion");
+        jLabel3.setText("Solucion (Cantidad de Morrales)");
 
         jLabel1.setText("Numero de nodos");
 
@@ -323,20 +333,199 @@ panelbb.getComponent(i).setEnabled(false);
 
         jLabel5.setText("Cantidad de variables generadas");
 
-        tb_numeroNodos.setEditable(false);
+        tb_numeroNodosCantMorrales.setEditable(false);
 
-        tb_cantidadIteraciones.setEditable(false);
-        tb_cantidadIteraciones.addActionListener(new java.awt.event.ActionListener() {
+        tb_cantidadIteracionesCantMorrales.setEditable(false);
+        tb_cantidadIteracionesCantMorrales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tb_cantidadIteracionesActionPerformed(evt);
+                tb_cantidadIteracionesCantMorralesActionPerformed(evt);
             }
         });
 
-        tb_cantidadVariables.setEditable(false);
+        tb_cantidadVariablesCantMorrales.setEditable(false);
 
         jLabel6.setText("Tiempo de ejecucion");
 
-        tb_tiempoDeEjecucion.setEditable(false);
+        tb_tiempoDeEjecucionCantMorrales.setEditable(false);
+
+        javax.swing.GroupLayout pn_solucionCantidadMorralesLayout = new javax.swing.GroupLayout(pn_solucionCantidadMorrales);
+        pn_solucionCantidadMorrales.setLayout(pn_solucionCantidadMorralesLayout);
+        pn_solucionCantidadMorralesLayout.setHorizontalGroup(
+            pn_solucionCantidadMorralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_solucionCantidadMorralesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pn_solucionCantidadMorralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pn_solucionCantidadMorralesLayout.createSequentialGroup()
+                        .addGroup(pn_solucionCantidadMorralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(pn_solucionCantidadMorralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_solucionCantidadMorralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(tb_cantidadVariablesCantMorrales, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tb_cantidadIteracionesCantMorrales, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                                .addComponent(tb_numeroNodosCantMorrales, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(tb_tiempoDeEjecucionCantMorrales, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pn_solucionCantidadMorralesLayout.setVerticalGroup(
+            pn_solucionCantidadMorralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_solucionCantidadMorralesLayout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pn_solucionCantidadMorralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tb_numeroNodosCantMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pn_solucionCantidadMorralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(tb_cantidadIteracionesCantMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pn_solucionCantidadMorralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(tb_cantidadVariablesCantMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pn_solucionCantidadMorralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(tb_tiempoDeEjecucionCantMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        ta_solucionCantidadMorrales.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        ta_solucionCantidadMorrales.setToolTipText("");
+        ta_solucionCantidadMorrales.setEnabled(false);
+        sc_solucionCantidadMorrales.setViewportView(ta_solucionCantidadMorrales);
+
+        lb_numDeMorrales.setText("El número óptimo de morrales es:");
+
+        tb_numDeMorrales.setEditable(false);
+
+        javax.swing.GroupLayout pn_areaSolucionLayout = new javax.swing.GroupLayout(pn_areaSolucion);
+        pn_areaSolucion.setLayout(pn_areaSolucionLayout);
+        pn_areaSolucionLayout.setHorizontalGroup(
+            pn_areaSolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_areaSolucionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pn_areaSolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pn_areaSolucionLayout.createSequentialGroup()
+                        .addComponent(pn_solucionCantidadMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(sc_solucionCantidadMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_areaSolucionLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lb_numDeMorrales)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tb_numDeMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        pn_areaSolucionLayout.setVerticalGroup(
+            pn_areaSolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_areaSolucionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pn_solucionCantidadMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sc_solucionCantidadMorrales, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pn_areaSolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_numDeMorrales)
+                    .addComponent(tb_numDeMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        sp_areaRespuestaCantidadMorrales.setLeftComponent(pn_areaSolucion);
+
+        ta_solucionDistribucionEquilibrada.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        ta_solucionDistribucionEquilibrada.setToolTipText("");
+        ta_solucionDistribucionEquilibrada.setEnabled(false);
+        sc_distribucionCantidadMorrales.setViewportView(ta_solucionDistribucionEquilibrada);
+
+        pn_solucionCantidadMorrales1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setText("Solucion (Distribución equilibrada)");
+
+        jLabel8.setText("Numero de nodos");
+
+        jLabel9.setText("Cantidad de iteraciones");
+
+        jLabel10.setText("Cantidad de variables generadas");
+
+        tb_numeroNodosDistriEquilibrada.setEditable(false);
+
+        tb_cantidadIteracionesDistriEquilibrada.setEditable(false);
+        tb_cantidadIteracionesDistriEquilibrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tb_cantidadIteracionesDistriEquilibradaActionPerformed(evt);
+            }
+        });
+
+        tb_cantidadVariablesDistriEquilibrada.setEditable(false);
+
+        jLabel11.setText("Tiempo de ejecucion");
+
+        tb_tiempoDeEjecucionDistriEquilibrada.setEditable(false);
+
+        javax.swing.GroupLayout pn_solucionCantidadMorrales1Layout = new javax.swing.GroupLayout(pn_solucionCantidadMorrales1);
+        pn_solucionCantidadMorrales1.setLayout(pn_solucionCantidadMorrales1Layout);
+        pn_solucionCantidadMorrales1Layout.setHorizontalGroup(
+            pn_solucionCantidadMorrales1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_solucionCantidadMorrales1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pn_solucionCantidadMorrales1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(pn_solucionCantidadMorrales1Layout.createSequentialGroup()
+                        .addGroup(pn_solucionCantidadMorrales1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11))
+                        .addGap(18, 18, 18)
+                        .addGroup(pn_solucionCantidadMorrales1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tb_numeroNodosDistriEquilibrada, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                            .addComponent(tb_cantidadIteracionesDistriEquilibrada, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tb_cantidadVariablesDistriEquilibrada, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tb_tiempoDeEjecucionDistriEquilibrada, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pn_solucionCantidadMorrales1Layout.setVerticalGroup(
+            pn_solucionCantidadMorrales1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_solucionCantidadMorrales1Layout.createSequentialGroup()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pn_solucionCantidadMorrales1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(tb_numeroNodosDistriEquilibrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pn_solucionCantidadMorrales1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(tb_cantidadIteracionesDistriEquilibrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pn_solucionCantidadMorrales1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(tb_cantidadVariablesDistriEquilibrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pn_solucionCantidadMorrales1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(tb_tiempoDeEjecucionDistriEquilibrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -345,87 +534,39 @@ panelbb.getComponent(i).setEnabled(false);
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tb_numeroNodos, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                    .addComponent(tb_cantidadIteraciones)
-                    .addComponent(tb_cantidadVariables)
-                    .addComponent(tb_tiempoDeEjecucion))
-                .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(pn_solucionCantidadMorrales1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(sc_distribucionCantidadMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(tb_numeroNodos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(tb_cantidadIteraciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(tb_cantidadVariables, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(tb_tiempoDeEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        ta_solucion.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        ta_solucion.setToolTipText("");
-        ta_solucion.setEnabled(false);
-        sc_solucion.setViewportView(ta_solucion);
-
-        javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
-        panel2.setLayout(panel2Layout);
-        panel2Layout.setHorizontalGroup(
-            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sc_solucion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(panel2Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 61, Short.MAX_VALUE))
-                    .addGroup(panel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lb_numDeMorrales)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tb_numDeMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        panel2Layout.setVerticalGroup(
-            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel2Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pn_solucionCantidadMorrales1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sc_solucion, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_numDeMorrales)
-                    .addComponent(tb_numDeMorrales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(sc_distribucionCantidadMorrales, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        sp_areaDeRespuesta.setRightComponent(panel2);
+        sp_areaRespuestaCantidadMorrales.setRightComponent(jPanel2);
+
+        javax.swing.GroupLayout pn_areaSolucionCantidadMorralesLayout = new javax.swing.GroupLayout(pn_areaSolucionCantidadMorrales);
+        pn_areaSolucionCantidadMorrales.setLayout(pn_areaSolucionCantidadMorralesLayout);
+        pn_areaSolucionCantidadMorralesLayout.setHorizontalGroup(
+            pn_areaSolucionCantidadMorralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(sp_areaRespuestaCantidadMorrales, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
+        );
+        pn_areaSolucionCantidadMorralesLayout.setVerticalGroup(
+            pn_areaSolucionCantidadMorralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_areaSolucionCantidadMorralesLayout.createSequentialGroup()
+                .addComponent(sp_areaRespuestaCantidadMorrales)
+                .addContainerGap())
+        );
+
+        sp_areaDeRespuesta.setRightComponent(pn_areaSolucionCantidadMorrales);
 
         tb_ruta.setEditable(false);
         tb_ruta.addActionListener(new java.awt.event.ActionListener() {
@@ -438,20 +579,17 @@ panelbb.getComponent(i).setEnabled(false);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(sp_areaDeRespuesta)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(lb_subirArchivo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tb_ruta, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(sp_areaDeRespuesta))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelbb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelbb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -473,12 +611,22 @@ panelbb.getComponent(i).setEnabled(false);
         LlenarTablas llenarTab;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        tb_cantidadIteraciones.setText("");
-            tb_cantidadVariables.setText("");
-            tb_numeroNodos.setText("");
-            tb_numDeMorrales.setText("");
-            tb_tiempoDeEjecucion.setText("");
-         fl_buscarRuta.showOpenDialog(this);
+        //Cantidad Morrales
+        tb_cantidadIteracionesCantMorrales.setText("");
+        tb_cantidadVariablesCantMorrales.setText("");
+        tb_numeroNodosCantMorrales.setText("");
+        tb_numDeMorrales.setText("");
+        tb_tiempoDeEjecucionCantMorrales.setText("");
+        
+        //Distribucion equilibrada
+        tb_cantidadIteracionesDistriEquilibrada.setText("");
+        tb_cantidadVariablesDistriEquilibrada.setText("");
+        tb_numeroNodosDistriEquilibrada.setText("");
+        tb_tiempoDeEjecucionDistriEquilibrada.setText("");
+            
+         try {
+            fl_buscarRuta.showOpenDialog(this);
+         
          if (fl_buscarRuta.getSelectedFile()!=null)
          {
              for(int i=0;i<panelbb.getComponents().length;i++) {
@@ -486,17 +634,20 @@ panelbb.getComponent(i).setEnabled(false);
              }
          }
     
-         llenarTab=new LlenarTablas(fl_buscarRuta.getSelectedFile().getPath());
-         resolver=new ResolverProblema(fl_buscarRuta.getSelectedFile().getPath());
+        llenarTab=new LlenarTablas(fl_buscarRuta.getSelectedFile().getPath());
+        resolver=new ResolverProblema(fl_buscarRuta.getSelectedFile().getPath());
         tb_ruta.setText(fl_buscarRuta.getSelectedFile().getPath());
         String pattern = "###.###";
         DecimalFormat decimalFormat = new DecimalFormat(pattern);
         tb_cantDeCajas.setText(""+Math.round(resolver.getPropiedades().get(0)));
         tb_volMorrales.setText(decimalFormat.format(resolver.getPropiedades().get(1)));
         tb_pesoDeMorrales.setText(decimalFormat.format(resolver.getPropiedades().get(2)));
-        llenarTab.llenarTabla1(ta_requerimiento);
-        ta_solucion.setModel(new DefaultTableModel());
-        
+        llenarTab.llenarTablarRequerimiento(ta_requerimiento);
+        ta_solucionCantidadMorrales.setModel(new DefaultTableModel());
+        ta_solucionDistribucionEquilibrada.setModel(new DefaultTableModel());
+        } catch (NullPointerException e) {
+            JOptionPane.showConfirmDialog(null, "Debe seleccionar un archivo");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void bt_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_calcularActionPerformed
@@ -509,30 +660,64 @@ panelbb.getComponent(i).setEnabled(false);
         
         
             if (rb_node_firstselect.isSelected())
-                factible=llenarTab.llenarTabla2(ta_solucion,0);
+            {
+                factible=llenarTab.llenarTablaCantidadMorrales(ta_solucionCantidadMorrales,0);
+                llenarTab.llenarTablaDistEquilibradaMorrales(ta_solucionDistribucionEquilibrada,0);
+            }
             else if (rb_node_gapselect.isSelected())
-                factible=llenarTab.llenarTabla2(ta_solucion,1);
+            {
+                factible=llenarTab.llenarTablaCantidadMorrales(ta_solucionCantidadMorrales,1);
+                llenarTab.llenarTablaDistEquilibradaMorrales(ta_solucionDistribucionEquilibrada,1);
+            }
             else  if (rb_node_rangeselect.isSelected())
-                factible=llenarTab.llenarTabla2(ta_solucion,2);
+            {
+                factible=llenarTab.llenarTablaCantidadMorrales(ta_solucionCantidadMorrales,2);
+                llenarTab.llenarTablaDistEquilibradaMorrales(ta_solucionDistribucionEquilibrada,2);
+            }
             else if (rb_node_fractionselect.isSelected())
-                factible=llenarTab.llenarTabla2(ta_solucion,3);
+            {
+                factible=llenarTab.llenarTablaCantidadMorrales(ta_solucionCantidadMorrales,3);
+                llenarTab.llenarTablaDistEquilibradaMorrales(ta_solucionDistribucionEquilibrada,3);
+            }
             else if (rb_node_pseudocostsselect.isSelected())
-                factible=llenarTab.llenarTabla2(ta_solucion,4);
+            {
+                factible=llenarTab.llenarTablaCantidadMorrales(ta_solucionCantidadMorrales,4);
+                llenarTab.llenarTablaDistEquilibradaMorrales(ta_solucionDistribucionEquilibrada,4);
+            }
             else if (rb_node_pseudononintselect.isSelected())
-                factible=llenarTab.llenarTabla2(ta_solucion,5);
+            {
+                factible=llenarTab.llenarTablaCantidadMorrales(ta_solucionCantidadMorrales,5);
+                llenarTab.llenarTablaDistEquilibradaMorrales(ta_solucionDistribucionEquilibrada,5);
+            }
             else if (rb_node_pseudorationselect.isSelected())
-                factible=llenarTab.llenarTabla2(ta_solucion,6);
+            {
+                factible=llenarTab.llenarTablaCantidadMorrales(ta_solucionCantidadMorrales,6);
+                llenarTab.llenarTablaDistEquilibradaMorrales(ta_solucionDistribucionEquilibrada,6);
+            }
             else if (rb_node_userselect.isSelected())
-                factible=llenarTab.llenarTabla2(ta_solucion,7);
+            {
+                factible=llenarTab.llenarTablaCantidadMorrales(ta_solucionCantidadMorrales,7);
+                llenarTab.llenarTablaDistEquilibradaMorrales(ta_solucionDistribucionEquilibrada,7);
+            }
             else if (rb_default.isSelected())
-                factible=llenarTab.llenarTabla2(ta_solucion,8);
+            {
+                factible=llenarTab.llenarTablaCantidadMorrales(ta_solucionCantidadMorrales,8);
+                llenarTab.llenarTablaDistEquilibradaMorrales(ta_solucionDistribucionEquilibrada,8);
+            }
             
             if (factible){
-            tb_cantidadIteraciones.setText(String.valueOf(llenarTab.getCantidadIteracionesCantMorrales()));
-            tb_cantidadVariables.setText(""+llenarTab.getCantidadVariablesCantMorrales());
-            tb_numeroNodos.setText(String.valueOf(llenarTab.getCantidadNodosCantMorrales()));
+                //tabla de cantidad de morrales
+            tb_cantidadIteracionesCantMorrales.setText(String.valueOf(llenarTab.getCantidadIteracionesCantMorrales()));
+            tb_cantidadVariablesCantMorrales.setText(""+llenarTab.getCantidadVariablesCantMorrales());
+            tb_numeroNodosCantMorrales.setText(String.valueOf(llenarTab.getCantidadNodosCantMorrales()));
             tb_numDeMorrales.setText(""+Math.round(llenarTab.getNumeroOptimoMorrales()));
-            tb_tiempoDeEjecucion.setText(""+llenarTab.getTiempoDeEjecucionCantMorrales());
+            tb_tiempoDeEjecucionCantMorrales.setText(""+llenarTab.getTiempoDeEjecucionCantMorrales());
+            
+            //tabla de distribucion
+            tb_cantidadIteracionesDistriEquilibrada.setText(String.valueOf(llenarTab.getCantidadIteracionesDistMorrales()));
+            tb_cantidadVariablesDistriEquilibrada.setText(""+llenarTab.getCantidadVariablesDistMorrales());
+            tb_numeroNodosDistriEquilibrada.setText(String.valueOf(llenarTab.getCantidadNodosDistMorrales()));
+            tb_tiempoDeEjecucionDistriEquilibrada.setText(""+llenarTab.getTiempoDeEjecucionDistMorrales());
             }
             else 
                 JOptionPane.showMessageDialog(null,"La entrada no es factible","Error de factibilidad",JOptionPane.ERROR_MESSAGE);
@@ -547,13 +732,13 @@ panelbb.getComponent(i).setEnabled(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_tb_rutaActionPerformed
 
-    private void tb_cantidadIteracionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_cantidadIteracionesActionPerformed
+    private void tb_cantidadIteracionesCantMorralesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_cantidadIteracionesCantMorralesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tb_cantidadIteracionesActionPerformed
+    }//GEN-LAST:event_tb_cantidadIteracionesCantMorralesActionPerformed
 
-    private void rb_defaultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_defaultActionPerformed
+    private void tb_cantidadIteracionesDistriEquilibradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_cantidadIteracionesDistriEquilibradaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rb_defaultActionPerformed
+    }//GEN-LAST:event_tb_cantidadIteracionesDistriEquilibradaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -562,11 +747,16 @@ panelbb.getComponent(i).setEnabled(false);
     private javax.swing.ButtonGroup gbox_bbrule;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lb_cantdecajas;
@@ -575,9 +765,12 @@ panelbb.getComponent(i).setEnabled(false);
     private javax.swing.JLabel lb_requerimiento;
     private javax.swing.JLabel lb_subirArchivo;
     private javax.swing.JLabel lb_volMorrales;
-    private javax.swing.JPanel panel1;
-    private javax.swing.JPanel panel2;
     private javax.swing.JPanel panelbb;
+    private javax.swing.JPanel pn_areaRequerimiento;
+    private javax.swing.JPanel pn_areaSolucion;
+    private javax.swing.JPanel pn_areaSolucionCantidadMorrales;
+    private javax.swing.JPanel pn_solucionCantidadMorrales;
+    private javax.swing.JPanel pn_solucionCantidadMorrales1;
     private javax.swing.JRadioButton rb_default;
     private javax.swing.JRadioButton rb_node_firstselect;
     private javax.swing.JRadioButton rb_node_fractionselect;
@@ -587,19 +780,26 @@ panelbb.getComponent(i).setEnabled(false);
     private javax.swing.JRadioButton rb_node_pseudorationselect;
     private javax.swing.JRadioButton rb_node_rangeselect;
     private javax.swing.JRadioButton rb_node_userselect;
+    private javax.swing.JScrollPane sc_distribucionCantidadMorrales;
     private javax.swing.JScrollPane sc_requerimiento;
-    private javax.swing.JScrollPane sc_solucion;
+    private javax.swing.JScrollPane sc_solucionCantidadMorrales;
     private javax.swing.JSplitPane sp_areaDeRespuesta;
+    private javax.swing.JSplitPane sp_areaRespuestaCantidadMorrales;
     private javax.swing.JTable ta_requerimiento;
-    private javax.swing.JTable ta_solucion;
+    private javax.swing.JTable ta_solucionCantidadMorrales;
+    private javax.swing.JTable ta_solucionDistribucionEquilibrada;
     private javax.swing.JTextField tb_cantDeCajas;
-    private javax.swing.JTextField tb_cantidadIteraciones;
-    private javax.swing.JTextField tb_cantidadVariables;
+    private javax.swing.JTextField tb_cantidadIteracionesCantMorrales;
+    private javax.swing.JTextField tb_cantidadIteracionesDistriEquilibrada;
+    private javax.swing.JTextField tb_cantidadVariablesCantMorrales;
+    private javax.swing.JTextField tb_cantidadVariablesDistriEquilibrada;
     private javax.swing.JTextField tb_numDeMorrales;
-    private javax.swing.JTextField tb_numeroNodos;
+    private javax.swing.JTextField tb_numeroNodosCantMorrales;
+    private javax.swing.JTextField tb_numeroNodosDistriEquilibrada;
     private javax.swing.JTextField tb_pesoDeMorrales;
     private javax.swing.JTextField tb_ruta;
-    private javax.swing.JTextField tb_tiempoDeEjecucion;
+    private javax.swing.JTextField tb_tiempoDeEjecucionCantMorrales;
+    private javax.swing.JTextField tb_tiempoDeEjecucionDistriEquilibrada;
     private javax.swing.JTextField tb_volMorrales;
     // End of variables declaration//GEN-END:variables
 }
