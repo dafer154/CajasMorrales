@@ -711,13 +711,13 @@ public class SubirArchivoGUI extends javax.swing.JPanel {
             tb_cantidadVariablesCantMorrales.setText(""+llenarTab.getCantidadVariablesCantMorrales());
             tb_numeroNodosCantMorrales.setText(String.valueOf(llenarTab.getCantidadNodosCantMorrales()));
             tb_numDeMorrales.setText(""+Math.round(llenarTab.getNumeroOptimoMorrales()));
-            tb_tiempoDeEjecucionCantMorrales.setText(""+llenarTab.getTiempoDeEjecucionCantMorrales()+" (m/s)");
+            tb_tiempoDeEjecucionCantMorrales.setText(""+llenarTab.getTiempoDeEjecucionCantMorrales()+" (ms)");
             
             //tabla de distribucion
             tb_cantidadIteracionesDistriEquilibrada.setText(String.valueOf(llenarTab.getCantidadIteracionesDistMorrales()));
             tb_cantidadVariablesDistriEquilibrada.setText(""+llenarTab.getCantidadVariablesDistMorrales());
             tb_numeroNodosDistriEquilibrada.setText(String.valueOf(llenarTab.getCantidadNodosDistMorrales()));
-            tb_tiempoDeEjecucionDistriEquilibrada.setText(""+llenarTab.getTiempoDeEjecucionDistMorrales()+" (m/s)");
+            tb_tiempoDeEjecucionDistriEquilibrada.setText(""+llenarTab.getTiempoDeEjecucionDistMorrales()+" (ms)");
             }
             else 
                 JOptionPane.showMessageDialog(null,"La entrada no es factible","Error de factibilidad",JOptionPane.ERROR_MESSAGE);
